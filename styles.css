@@ -1,0 +1,132 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100vh;
+    margin: 0;
+    background-color: #f4f4f4;
+}
+
+/* Estilos para el contenedor principal */
+.main-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    gap: 20px;
+}
+
+/* Estilos para el grid */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(7, 50px);
+    gap: 2px;
+    background-color: #fff;
+    padding: 10px;
+    border: 2px solid #000;
+    text-align: center;
+}
+
+/* Celda estándar */
+.cell {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+/* Celdas pequeñas */
+.cell-tiny {
+    width: 15px;
+    height: 15px;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Inputs */
+.input-cell {
+    width: 48px;
+    height: 48px;
+    font-size: 1.2rem;
+    text-align: center;
+    border: 1px dashed #000;
+    outline: none;
+    background-color: #f9f9f9;
+    border-radius: 3px;
+}
+
+.input-cell:focus {
+    border-color: #007bff;
+    background-color: #e6f0ff;
+}
+
+/* Separador */
+.separator {
+    grid-column: span 7;
+    border: none;
+    border-bottom: 2px solid #000;
+    height: 2px;
+}
+
+/* Contenedor de botones */
+.control-panel {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+/* Botones modernos y ovalados */
+.control-panel button {
+    padding: 12px 30px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.control-panel button:hover {
+    background-color: #45a049;
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+.control-panel button:active {
+    background-color: #388e3c;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Resultado */
+#result-container {
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* Contenedor para la imagen */
+.image-panel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    padding: 10px;
+    border: 2px solid #000;
+    border-radius: 5px;
+}
+
+.grid-image {
+    width: 350px; /* Ajusta el ancho al tamaño del grid */
+    height: auto; /* Mantén la proporción */
+}
