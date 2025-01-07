@@ -1,3 +1,4 @@
+/* Estilos generales */
 body {
     font-family: Arial, sans-serif;
     display: flex;
@@ -6,17 +7,19 @@ body {
     justify-content: flex-start;
     height: 100vh;
     margin: 0;
-    background-color: #f4f4f4;
+    background-color: #f0f8ff; /* Azul claro para apariencia amigable */
 }
 
 /* Estilos para el contenedor principal */
 .main-container {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     margin-top: 20px;
     gap: 20px;
+    width: 100%;
+    max-width: 1000px; /* Asegura que no ocupe toda la pantalla */
 }
 
 /* Estilos para el grid */
@@ -27,7 +30,10 @@ body {
     background-color: #fff;
     padding: 10px;
     border: 2px solid #000;
+    border-radius: 8px; /* Bordes redondeados */
     text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra para darle profundidad */
+    max-width: 100%;
 }
 
 /* Celda estándar */
@@ -60,12 +66,13 @@ body {
     border: 1px dashed #000;
     outline: none;
     background-color: #f9f9f9;
-    border-radius: 3px;
+    border-radius: 5px; /* Bordes redondeados */
+    transition: border-color 0.3s ease, background-color 0.3s ease;
 }
 
 .input-cell:focus {
-    border-color: #007bff;
-    background-color: #e6f0ff;
+    border-color: #007bff; /* Azul más vivo al enfocar */
+    background-color: #e6f0ff; /* Fondo azul suave */
 }
 
 /* Separador */
@@ -80,7 +87,8 @@ body {
 .control-panel {
     margin-top: 20px;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     gap: 10px;
     margin-bottom: 20px;
 }
@@ -96,6 +104,7 @@ body {
     border-radius: 50px;
     transition: all 0.3s ease;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 70%; /* Botones más grandes en pantallas pequeñas */
 }
 
 .control-panel button:hover {
@@ -113,6 +122,7 @@ body {
     margin-top: 10px;
     font-size: 18px;
     font-weight: bold;
+    color: #333; /* Un gris oscuro legible */
 }
 
 /* Contenedor para la imagen */
@@ -123,10 +133,13 @@ body {
     background-color: #fff;
     padding: 10px;
     border: 2px solid #000;
-    border-radius: 5px;
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para darle profundidad */
 }
 
 .grid-image {
-    width: 350px; /* Ajusta el ancho al tamaño del grid */
+    width: 80%; /* Ajusta el tamaño al contenedor */
     height: auto; /* Mantén la proporción */
+    max-width: 400px; /* Límite de tamaño para pantallas pequeñas */
 }
+

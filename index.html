@@ -54,26 +54,26 @@
             <div class="cell"></div>
             <div class="cell"></div>
             <div class="cell"></div>
-            <input type="text" class="input-cell" maxlength="1">
-            <input type="text" class="input-cell" maxlength="1">
-            <input type="text" class="input-cell" maxlength="1">
-            <input type="text" class="input-cell" maxlength="1">
+            <input type="text" class="input-cell partial-result" maxlength="1">
+            <input type="text" class="input-cell partial-result" maxlength="1">
+            <input type="text" class="input-cell partial-result" maxlength="1">
+            <input type="text" class="input-cell partial-result" maxlength="1">
 
             <!-- Resultado parcial 2 -->
             <div class="cell"></div>
             <div class="cell"></div>
-            <input type="text" class="input-cell" maxlength="1">
-            <input type="text" class="input-cell" maxlength="1">
-            <input type="text" class="input-cell" maxlength="1">
-            <input type="text" class="input-cell" maxlength="1">
+            <input type="text" class="input-cell partial-result" maxlength="1">
+            <input type="text" class="input-cell partial-result" maxlength="1">
+            <input type="text" class="input-cell partial-result" maxlength="1">
+            <input type="text" class="input-cell partial-result" maxlength="1">
             <div class="cell"></div>
 
             <!-- Resultado parcial 3 -->
             <div class="cell">+</div>
-            <input type="text" class="input-cell" maxlength="1">
-            <input type="text" class="input-cell" maxlength="1">
-            <input type="text" class="input-cell" maxlength="1">
-            <input type="text" class="input-cell" maxlength="1">
+            <input type="text" class="input-cell partial-result" maxlength="1">
+            <input type="text" class="input-cell partial-result" maxlength="1">
+            <input type="text" class="input-cell partial-result" maxlength="1">
+            <input type="text" class="input-cell partial-result" maxlength="1">
             <div class="cell"></div>
             <div class="cell"></div>
 
@@ -81,13 +81,13 @@
             <div class="separator"></div>
 
             <!-- Resultado final -->
-            <input type="text" class="input-cell" maxlength="1">
-            <input type="text" class="input-cell" maxlength="1">
-            <input type="text" class="input-cell" maxlength="1">
-            <input type="text" class="input-cell" maxlength="1">
-            <input type="text" class="input-cell" maxlength="1">
-            <input type="text" class="input-cell" maxlength="1">
-            <input type="text" class="input-cell" maxlength="1">
+            <input type="text" class="input-cell final-result" maxlength="1">
+            <input type="text" class="input-cell final-result" maxlength="1">
+            <input type="text" class="input-cell final-result" maxlength="1">
+            <input type="text" class="input-cell final-result" maxlength="1">
+            <input type="text" class="input-cell final-result" maxlength="1">
+            <input type="text" class="input-cell final-result" maxlength="1">
+            <input type="text" class="input-cell final-result" maxlength="1">
         </div>
 
         <!-- Imagen de Pitágoras -->
@@ -97,12 +97,12 @@
     </div>
 
     <!-- Contenedor de botones y resultado -->
-<div class="control-panel">
-    <button onclick="fillRow('row1')">Generar fila 1</button>
-    <button onclick="fillRow('row2')">Generar fila 2</button>
-    <button onclick="multiplyNumbers()">Multiplicación</button>
-    <button onclick="clearGrid()">Limpiar Grid</button> <!-- Nuevo botón -->
-</div>
+    <div class="control-panel">
+        <button onclick="fillRow('row1')">Generar fila 1</button>
+        <button onclick="fillRow('row2')">Generar fila 2</button>
+        <button onclick="multiplyNumbers()">Multiplicación</button>
+        <button onclick="clearGrid()">Limpiar Grid</button>
+    </div>
 
     <div id="result-container">
         Resultado: <span id="result"></span>
@@ -111,3 +111,4 @@
     <script src="script.js"></script>
 </body>
 </html>
+

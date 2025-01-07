@@ -31,4 +31,7 @@ function clearGrid() {
     inputs.forEach(input => {
         input.value = ''; // Limpiar el contenido de cada input
     });
+
+    
 }
+
