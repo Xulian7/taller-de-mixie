@@ -104,13 +104,33 @@ body {
 }
 
 
-/* Resultado */
+/* Estilo moderno y llamativo para el contenedor del resultado */
 #result-container {
-    margin-top: 10px;
-    font-size: 18px;
+    margin-top: 20px;
+    padding: 15px;
+    font-size: 20px;
     font-weight: bold;
-    color: #333; /* Un gris oscuro legible */
+    color: #fff; /* Blanco para resaltar el texto */
+    background: linear-gradient(45deg, #ff6f61, #ff9a8b); /* Un gradiente vibrante */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra sutil para darle profundidad */
+    text-align: center;
+    transition: all 0.3s ease; /* Animación suave al cambiar estado */
 }
+
+#result-container.correct {
+    background: linear-gradient(45deg, #4caf50, #81c784); /* Verde para resultado correcto */
+}
+
+#result-container.error {
+    background: linear-gradient(45deg, #f44336, #e57373); /* Rojo para resultado incorrecto */
+}
+
+#result-container:hover {
+    transform: scale(1.05); /* Efecto de agrandar al pasar el mouse */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Aumentar la sombra al hacer hover */
+}
+
 
 /* Contenedor para la imagen */
 .image-panel {
@@ -168,3 +188,24 @@ body {
     text-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 
+/* Estilos para el footer */
+footer {
+    margin-top: 50px;  /* */
+    background-color: #0a9ef3;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+.footer-content a {
+    color: #ffcc00;
+    text-decoration: none;
+    margin: 0 5px;
+}
+
+.footer-content a:hover {
+    text-decoration: underline;
+}
