@@ -21,6 +21,7 @@ function multiplyNumbers() {
         const result = parseInt(number1) * parseInt(number2);
         document.getElementById('result').textContent = result;
     } else {
+        // Considera personalizar el mensaje de error
         document.getElementById('result').textContent = 'Error: Completa todos los campos con números válidos.';
     }
 }
@@ -32,6 +33,22 @@ function clearGrid() {
         input.value = ''; // Limpiar el contenido de cada input
     });
 
-    
+    // Considera agregar una confirmación para evitar limpieza accidental
 }
+
+// Función para limpiar el grid auxiliar
+function clearAux1(rowClass) {
+    // Selecciona todos los inputs con la clase pasada como argumento
+    const inputs = document.querySelectorAll(`.cell-tiny.${rowClass}`);
+    // Verificar si existen inputs con la clase pasada
+    if (inputs.length > 0) {
+        // Limpiar el contenido de cada input
+        inputs.forEach(input => {
+            input.value = ''; 
+        });
+    } else {
+        console.log(`No se encontraron elementos con la clase .cell-tiny.${rowClass}`);
+    }
+}
+
 

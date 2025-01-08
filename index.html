@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <h1 class="rainbow-text">Taller matemático de Mixie</h1>
     <!-- Contenedor principal -->
     <div class="main-container">
         <!-- Grid de operaciones -->
@@ -15,9 +16,9 @@
             <div class="cell"></div>
             <div class="cell"></div>
             <div class="cell"></div>
-            <div class="cell"></div>
-            <input type="text" class="cell-tiny" maxlength="1">
-            <input type="text" class="cell-tiny" maxlength="1">
+            <button class="close-button" onclick="clearAux1('rowa')">X</button>
+            <input type="text" class="cell-tiny rowa" maxlength="1">
+            <input type="text" class="cell-tiny rowa" maxlength="1">
             <div class="cell"></div>
 
             <!-- Primera fila -->
@@ -43,10 +44,10 @@
 
             <!-- Fila auxiliar 2 -->
             <div class="cell"></div>
-            <div class="cell"></div>
-            <input type="text" class="cell-tiny" maxlength="1">
-            <input type="text" class="cell-tiny" maxlength="1">
-            <input type="text" class="cell-tiny" maxlength="1">
+            <button class="close-button" onclick="clearAux1('rowb')">X</button>
+            <input type="text" class="cell-tiny rowb" maxlength="1">
+            <input type="text" class="cell-tiny rowb" maxlength="1">
+            <input type="text" class="cell-tiny rowb" maxlength="1">
             <div class="cell"></div>
             <div class="cell"></div>
 
@@ -111,4 +112,3 @@
     <script src="script.js"></script>
 </body>
 </html>
-
