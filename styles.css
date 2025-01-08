@@ -22,14 +22,15 @@ body {
 /* Estilos para el grid */
 .grid-container {
     display: grid;
-    grid-template-columns: repeat(7, 50px);
-    gap: 2px;
+    grid-template-columns: repeat(7, auto); /* Permitir un ajuste automático del ancho */
+    gap: 5px; /* Espaciado más reducido entre las celdas grandes */
+    padding: 5px; /* Reducir el padding interno del contenedor */
+    max-width: fit-content; /* El contenedor solo ocupará el espacio necesario */
     background-color: #fff;
-    padding: 10px;
     border: 2px solid #000;
-    border-radius: 8px; /* Bordes redondeados */
+    border-radius: 8px;
     text-align: center;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra para darle profundidad */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 /* Celda estándar */
@@ -43,14 +44,25 @@ body {
     font-weight: bold;
 }
 
+/* Celda estándar */
+.cell-2 {
+    width: 15px;
+    height: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
 /* Celdas pequeñas */
 .cell-tiny {
     width: 15px;
     height: 15px;
     font-size: 0.9rem;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    align-items: flex-end;
+    justify-content: flex-start;
     border: 1px dotted black; /* Bordes punteados de color negro */
 }
 
@@ -104,7 +116,6 @@ body {
 }
 
 
-/* Estilo moderno y llamativo para el contenedor del resultado */
 #result-container {
     margin-top: 20px;
     padding: 15px;
@@ -144,10 +155,43 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para darle profundidad */
 }
 
+
 .grid-image {
-    width: 350px; /* Ajusta el ancho al tamaño del grid */
-    height: auto; /* Mantén la proporción */
+    position: relative; /* Necesario para posicionar el aro */
+    width: 350px; /* Ajusta según tu diseño */
+    height: auto;
+    border-radius: 8px; /* Opcional, si quieres bordes redondeados */
+    transition: transform 0.3s ease-in-out;
 }
+
+/* Efecto al pasar el mouse */
+.grid-image:hover {
+    transform: scale(1.05); /* Aumenta ligeramente el tamaño */
+}
+
+/* Contenedor del aro */
+.grid-image::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    width: 20%;
+    height: 20%;
+    border: 3px solid rgba(255, 255, 255, 0.6); /* Aro de luz */
+    border-radius: 50%;
+    opacity: 0;
+    pointer-events: none; /* No interfiere con el puntero */
+    transition: opacity 0.3s ease-in-out, transform 0.6s ease-in-out;
+    box-shadow: 0 0 15px 8px rgba(255, 255, 255, 0.5); /* Brillo alrededor */
+}
+
+/* Al pasar el mouse, el aro aparece */
+.grid-image:hover::after {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+
 
 .close-button {
     width: 12px;         

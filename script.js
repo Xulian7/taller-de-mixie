@@ -34,10 +34,10 @@ function validateAndMultiply() {
         if (userResult === resultFromMultiplication.toString()) {
             document.getElementById('result').textContent = `¡Correcto! El resultado de la multiplicación es ${resultFromMultiplication}`;
         } else {
-            document.getElementById('result').textContent = `Error: La multiplicación no coincide. Resultado esperado: ${resultFromMultiplication}`;
+            document.getElementById('result').textContent = `La multiplicación no coincide. Resultado esperado: ${resultFromMultiplication}`;
         }
     } else {
-        document.getElementById('result').textContent = 'Error: Completa todos los campos con números válidos de tres cifras.';
+        document.getElementById('result').textContent = 'Completa todos los campos con números válidos de tres cifras.';
     }
 }
 
@@ -65,3 +65,5 @@ function clearAux1(rowClass) {
         console.log(`No se encontraron elementos con la clase .cell-tiny.${rowClass}`);
     }
 }
+
+
