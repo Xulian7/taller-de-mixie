@@ -192,7 +192,6 @@ body {
     transform: translate(-50%, -50%) scale(1);
 }
 
-
 .close-button {
     width: 12px;         
     height: 12px;        
@@ -231,6 +230,38 @@ body {
     /* Sombra para darle profundidad */
     text-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
+
+/* Contenedor del score */
+#score-container {
+    position: fixed; /* Fijo para que siempre esté visible */
+    top: 20px; /* Espaciado desde la parte superior */
+    left: 20px; /* Espaciado desde la parte izquierda */
+    display: flex; /* Mostrar los elementos en línea */
+    align-items: center; /* Centrar verticalmente */
+    gap: 10px; /* Espacio entre el corazón y el texto */
+    padding: 10px; /* Espaciado interno */
+    background-color: #fff; /* Fondo blanco */
+    border: 2px solid #000; /* Borde negro */
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra sutil */
+    z-index: 1000; /* Asegurarse de que esté encima */
+}
+
+/* Estilo de la imagen del corazón */
+.score-heart {
+    width: 25px; /* Ajustar tamaño del corazón */
+    height: auto;
+}
+
+/* Estilo del label */
+#score-label {
+    font-size: 1.5rem; /* Tamaño del texto */
+    font-weight: bold; /* Texto en negrita */
+    color: #000; /* Texto negro */
+}
+
+
+
 
 /* Estilos para el footer */
 footer {

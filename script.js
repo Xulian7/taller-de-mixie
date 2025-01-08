@@ -33,6 +33,7 @@ function validateAndMultiply() {
         // Verifica si la multiplicación calculada y el resultado ingresado son iguales
         if (userResult === resultFromMultiplication.toString()) {
             document.getElementById('result').textContent = `¡Correcto! El resultado de la multiplicación es ${resultFromMultiplication}`;
+            incrementScore(); // Incrementar el score
         } else {
             document.getElementById('result').textContent = `La multiplicación no coincide. Resultado esperado: ${resultFromMultiplication}`;
         }
@@ -65,5 +66,21 @@ function clearAux1(rowClass) {
         console.log(`No se encontraron elementos con la clase .cell-tiny.${rowClass}`);
     }
 }
+
+let score = 0;
+let heladoCount = 0;
+// Función para incrementar el score
+function incrementScore() {
+    score += 1;
+    document.getElementById('score-label').textContent = score;
+
+    // Verificar si el score es mayor o igual a 5
+    if (score >= 5) {
+        heladoCount += 1;
+        document.getElementById('score-label2').textContent = heladoCount;
+        score = 0;  // Reiniciar el score después de sumar un helado
+    }
+}
+
 
 
