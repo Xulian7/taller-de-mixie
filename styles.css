@@ -6,6 +6,7 @@ body {
     justify-content: flex-start;
     height: 100vh;
     margin: 0;
+    overflow-x: hidden; /* Evitar scroll horizontal */
     background-color: #f0f8ff; /* Cambiado a un azul claro para una apariencia más amigable */
 }
 
