@@ -89,4 +89,17 @@ function incrementScore() {
 }
 
 
+// Obténer los elementos de audio
+const sonidoClic = document.getElementById('sonidoClic');
+const risaClic = document.getElementById('RisaClic');
 
+// Agrega eventos a los botones para reproducir el sonido correspondiente
+document.getElementById('nuevoEjercicio').addEventListener('click', () => {
+    sonidoClic.currentTime = 0; // Reinicia el sonido
+    sonidoClic.play();         // Reproduce el sonido 'boing'
+});
+
+document.getElementById('verResultado').addEventListener('click', () => {
+    risaClic.currentTime = 0; // Reinicia el sonido
+    risaClic.play();          // Reproduce el sonido 'smile'
+});
