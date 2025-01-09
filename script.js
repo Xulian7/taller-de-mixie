@@ -6,6 +6,12 @@ function fillRow(rowClass) {
     });
 }
 
+function generateBothRows() {
+    fillRow('row1'); // Genera números aleatorios para la fila 1
+    fillRow('row2'); // Genera números aleatorios para la fila 2
+}
+
+
 // Función para realizar la multiplicación
 function validateAndMultiply() {
     // Obtiene los números de las filas
@@ -72,7 +78,7 @@ let heladoCount = 0;
 // Función para incrementar el score
 function incrementScore() {
     score += 1;
-    document.getElementById('score-label').textContent = score;
+    document.getElementById('score-label1').textContent = score;
 
     // Verificar si el score es mayor o igual a 5
     if (score >= 5) {

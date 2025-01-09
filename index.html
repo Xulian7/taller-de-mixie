@@ -7,6 +7,8 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <title>Taller de Mariana</title>
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -14,9 +16,9 @@
 
     <div id="score-container">
         <img src="img/heart.png" alt="Heart" class="score-heart">
-        <label id="score-label">0</label>
-        <img src="img/Ice_Cream.png" alt="Heart" class="score-heart">
-        <label id="score-label2">0</label>
+        <label id="score-label1" class="score-label">0</label>
+        <img src="img/Ice_Cream.png" alt="Ice_cream" class="score-heart">
+        <label id="score-label2" class="score-label">0</label>
 
     </div>
     <!-- Contenedor principal -->
@@ -121,8 +123,7 @@
 
     <!-- Contenedor de botones y resultado -->
     <div class="control-panel">
-        <button onclick="fillRow('row1')">Generar fila 1</button>
-        <button onclick="fillRow('row2')">Generar fila 2</button>
+        <button onclick="generateBothRows()">Nuevo ejercicio</button>
         <button onclick="validateAndMultiply()">Ver resultado</button>
         <button onclick="clearGrid()">Limpiar Grid</button>
     </div>
@@ -136,9 +137,9 @@
             <p>© Taller matematico de Mixie. Todos los derechos reservados.</p>
             
             <div class="social-media">
-                <a href="https://facebook.com" target="_blank">Facebook</a> |
-                <a href="https://twitter.com" target="_blank">Twitter</a> |
-                <a href="https://instagram.com" target="_blank">Instagram</a>
+                <a href="https://facebook.com" target="_blank">Mariana</a> |
+                <a href="https://twitter.com" target="_blank">Sofia</a> |
+                <a href="https://instagram.com" target="_blank">Grosso</a>
             </div>
         </div>
     </footer>
