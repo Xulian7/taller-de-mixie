@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contenedor 3x3 con Inputs</title>
+    <style>
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* Tres columnas */
+            grid-template-rows: repeat(3, 1fr);   /* Tres filas */
+            gap: 10px; /* Espaciado entre celdas */
+            width: 300px;
+            height: 300px;
+            margin: 20px auto;
+        }
+        .grid-item {
+            display: flex;
+            justify-content: flex-end; /* Alinear contenido a la derecha */
+            align-items: center;       /* Centrar verticalmente */
+            border: 1px solid #ccc;    /* Borde de las celdas */
+            padding: 10px;
+            background-color: #f9f9f9;
+        }
+        .grid-item input {
+            width: 50%; /* Reducir el tamaño al 50% del contenedor */
+            padding: 5px;
+            font-size: 14px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center;">Contenedor 3x3 con Inputs</h1>
+    <div class="grid-container">
+        <!-- Celdas con inputs alineados a la derecha -->
+        <div class="grid-item"><input type="text" placeholder="1"></div>
+        <div class="grid-item"><input type="text" placeholder="2"></div>
+        <div class="grid-item"><input type="text" placeholder="3"></div>
+        <div class="grid-item"><input type="text" placeholder="4"></div>
+        <div class="grid-item"><input type="text" placeholder="5"></div>
+        <div class="grid-item"><input type="text" placeholder="6"></div>
+        <div class="grid-item"><input type="text" placeholder="7"></div>
+        <div class="grid-item"><input type="text" placeholder="8"></div>
+        <div class="grid-item"><input type="text" placeholder="9"></div>
+    </div>
+</body>
+</html>

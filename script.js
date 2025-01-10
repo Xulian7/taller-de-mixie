@@ -6,9 +6,20 @@ function fillRow(rowClass) {
     });
 }
 
+// Función para generar ambas filas y habilitar el botón
 function generateBothRows() {
+    clearGrid(); // Limpiar el grid de operaciones
+    clearAux1('rowa'); // Limpiar el grid auxiliar de la fila 1
+    clearAux1('rowb'); // Limpiar el grid auxiliar de la fila 2
     fillRow('row1'); // Genera números aleatorios para la fila 1
     fillRow('row2'); // Genera números aleatorios para la fila 2
+    
+    // Intentar habilitar el botón "Ver resultado"
+    const resultButton = document.getElementById('verResultado');
+    if (resultButton) {
+        resultButton.disabled = false; // Habilitar el botón
+        resultButton.textContent = 'Ver resultado'; // Restaurar el texto
+    }
 }
 
 
@@ -37,11 +48,18 @@ function validateAndMultiply() {
         });
 
         // Verifica si la multiplicación calculada y el resultado ingresado son iguales
+        const resultElement = document.getElementById('result');
+        const resultButton = document.getElementById('verResultado'); // Asegúrate de que tu botón tenga este ID
+        
         if (userResult === resultFromMultiplication.toString()) {
-            document.getElementById('result').textContent = `¡Correcto! El resultado de la multiplicación es ${resultFromMultiplication}`;
+            resultElement.textContent = `¡Correcto! El resultado de la multiplicación es ${resultFromMultiplication}`;
             incrementScore(); // Incrementar el score
+            
+            // Desactivar el botón
+            resultButton.disabled = true;
+            resultButton.textContent = 'Resultado validado'; // Cambiar el texto del botón si lo deseas
         } else {
-            document.getElementById('result').textContent = `La multiplicación no coincide. Resultado esperado: ${resultFromMultiplication}`;
+            resultElement.textContent = `La multiplicación no coincide. Resultado esperado: ${resultFromMultiplication}`;
         }
     } else {
         document.getElementById('result').textContent = 'Completa todos los campos con números válidos de tres cifras.';
