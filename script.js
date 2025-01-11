@@ -124,11 +124,11 @@ function reproducirAudio(idAudio) {
 const imagen = document.getElementById('imagen-fija');
 const audio = document.getElementById('risas');
 
-        imagen.addEventListener('mouseover', function() {
-            audio.play();
-        });
-
-        imagen.addEventListener('mouseout', function() {
-            audio.pause();
-            audio.currentTime = 0;  // Para reiniciar el audio cuando se sale del hover
-        });
+imagen.addEventListener('click', function() {
+    if (audio.paused) {
+        audio.play();
+    } else {
+        audio.pause();
+        audio.currentTime = 0;  // Para reiniciar el audio cuando se hace clic nuevamente
+    }
+});

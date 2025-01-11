@@ -12,9 +12,9 @@ body {
 
 #imagen-fija {
     position: fixed;
-    top: 20px;
-    left: 150px;
-    width: 300px; /* Ajusta el tamaño según sea necesario */
+    top: 0px;
+    left: 0px;
+    width: 150px; /* Ajusta el tamaño según sea necesario */
     height: auto;
 }
 
