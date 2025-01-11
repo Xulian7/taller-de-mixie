@@ -7,8 +7,57 @@ body {
     height: 100vh;
     margin: 0;
     overflow-x: hidden; /* Evitar scroll horizontal */
-    background-color: #f0f8ff; /* Cambiado a un azul claro para una apariencia más amigable */
+    background-color: #f0f8ff; /* Azul claro */
 }
+
+#imagen-fija {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 300px; /* Ajusta el tamaño según sea necesario */
+    height: auto;
+}
+
+
+/* Contenedor para limitar el ancho del contenido */
+.limited-container {
+    max-width: 80%; /* Limitar el ancho al 80% */
+    margin: 0 auto; /* Centrar el contenedor horizontalmente */
+    padding: 20px; /* Espaciado interno opcional */
+    box-sizing: border-box; /* Incluir el padding en el ancho total */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centrar elementos dentro del contenedor */
+}
+
+/* Contenedor del score */
+#score-container {
+    position: static; /* Permitir que siga el flujo del documento */
+    display: flex; /* Mostrar los elementos en línea */
+    align-items: center; /* Centrar verticalmente */
+    justify-content: center; /* Centrar horizontalmente */
+    gap: 10px; /* Espacio entre el corazón y el texto */
+    margin-top: 10px; /* Separación desde el encabezado */
+    padding: 10px; /* Espaciado interno */
+    background-color: #fff; /* Fondo blanco */
+    border: 2px solid #000; /* Borde negro */
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra sutil */
+}
+
+/* Estilo de la imagen del corazón */
+.score-heart {
+    width: 25px; /* Ajustar tamaño del corazón */
+    height: auto;
+}
+
+/* Estilo del label */
+.score-label {
+    font-size: 1.5rem; /* Tamaño del texto */
+    font-weight: bold; /* Texto en negrita */
+    color: #000; /* Texto negro */
+}
+
 
 /* Estilos para el contenedor principal */
 .main-container {
@@ -215,34 +264,6 @@ input.cell-tiny {
     text-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 
-/* Contenedor del score */
-#score-container {
-    position: fixed; /* Fijo para que siempre esté visible */
-    top: 20px; /* Espaciado desde la parte superior */
-    left: 20px; /* Espaciado desde la parte izquierda */
-    display: flex; /* Mostrar los elementos en línea */
-    align-items: center; /* Centrar verticalmente */
-    gap: 10px; /* Espacio entre el corazón y el texto */
-    padding: 10px; /* Espaciado interno */
-    background-color: #fff; /* Fondo blanco */
-    border: 2px solid #000; /* Borde negro */
-    border-radius: 8px; /* Bordes redondeados */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra sutil */
-    z-index: 1000; /* Asegurarse de que esté encima */
-}
-
-/* Estilo de la imagen del corazón */
-.score-heart {
-    width: 25px; /* Ajustar tamaño del corazón */
-    height: auto;
-}
-
-/* Estilo del label */
-.score-label {
-    font-size: 1.5rem; /* Tamaño del texto */
-    font-weight: bold; /* Texto en negrita */
-    color: #000; /* Texto negro */
-}
 
 /* Estilos para el footer */
 footer {

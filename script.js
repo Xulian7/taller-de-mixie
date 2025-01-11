@@ -54,12 +54,13 @@ function validateAndMultiply() {
         if (userResult === resultFromMultiplication.toString()) {
             resultElement.textContent = `¡Correcto! El resultado de la multiplicación es ${resultFromMultiplication}`;
             incrementScore(); // Incrementar el score
-            
             // Desactivar el botón
             resultButton.disabled = true;
             resultButton.textContent = 'Resultado validado'; // Cambiar el texto del botón si lo deseas
+            reproducirAudio('rightans'); // Reproducir el audio de respuesta correcta
         } else {
             resultElement.textContent = `La multiplicación no coincide. Resultado esperado: ${resultFromMultiplication}`;
+            reproducirAudio('wrongans'); // Reproducir el audio de respuesta incorrecta
         }
     } else {
         document.getElementById('result').textContent = 'Completa todos los campos con números válidos de tres cifras.';
@@ -106,18 +107,16 @@ function incrementScore() {
     }
 }
 
-
 // Obténer los elementos de audio
 const sonidoClic = document.getElementById('sonidoClic');
 const risaClic = document.getElementById('RisaClic');
 
-// Agrega eventos a los botones para reproducir el sonido correspondiente
-document.getElementById('nuevoEjercicio').addEventListener('click', () => {
-    sonidoClic.currentTime = 0; // Reinicia el sonido
-    sonidoClic.play();         // Reproduce el sonido 'boing'
-});
-
-document.getElementById('verResultado').addEventListener('click', () => {
-    risaClic.currentTime = 0; // Reinicia el sonido
-    risaClic.play();          // Reproduce el sonido 'smile'
-});
+function reproducirAudio(idAudio) {
+    // Seleccionar el elemento de audio por su ID
+    const audio = document.getElementById(idAudio);
+    
+    // Reproducir el audio
+    if (audio) {
+        audio.play();
+    }
+}
