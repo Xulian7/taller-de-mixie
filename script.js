@@ -120,3 +120,15 @@ function reproducirAudio(idAudio) {
         audio.play();
     }
 }
+
+const imagen = document.getElementById('imagen-fija');
+const audio = document.getElementById('risas');
+
+        imagen.addEventListener('mouseover', function() {
+            audio.play();
+        });
+
+        imagen.addEventListener('mouseout', function() {
+            audio.pause();
+            audio.currentTime = 0;  // Para reiniciar el audio cuando se sale del hover
+        });
