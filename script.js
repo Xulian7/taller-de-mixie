@@ -58,6 +58,12 @@ function validateAndMultiply() {
             resultButton.disabled = true;
             resultButton.textContent = 'Resultado validado'; // Cambiar el texto del botón si lo deseas
             reproducirAudio('rightans'); // Reproducir el audio de respuesta correcta
+            // Mostrar el GIF por 4 segundos
+            const gifContainer = document.getElementById('gifContainer');
+            gifContainer.style.display = 'block'; // Mostrar el GIF
+            setTimeout(() => {
+                gifContainer.style.display = 'none'; // Ocultar el GIF después de 4 segundos
+            }, 3000);
         } else {
             resultElement.textContent = `La multiplicación no coincide. Resultado esperado: ${resultFromMultiplication}`;
             reproducirAudio('wrongans'); // Reproducir el audio de respuesta incorrecta
@@ -131,4 +137,60 @@ imagen.addEventListener('click', function() {
         audio.pause();
         audio.currentTime = 0;  // Para reiniciar el audio cuando se hace clic nuevamente
     }
+});
+
+// Seleccionar todos los inputs con la clase partial-result
+const partialResults = document.querySelectorAll('.partial-result');
+
+// Función para limpiar el realce
+function clearHighlight() {
+    const allInputs = document.querySelectorAll('.input-cell, .cell-tiny');
+    allInputs.forEach(input => {
+        input.style.backgroundColor = ''; // Restaurar color original
+    });
+}
+
+partialResults.forEach(input => {
+    input.addEventListener('focus', () => {
+        // Limpiar cualquier realce previo
+        clearHighlight();
+
+        // Extraer las clases "fn" y "cn" del input actual
+        const activeClasses = Array.from(input.classList);
+        const rowClass = activeClasses.find(cls => cls.startsWith('f')); // Ejemplo: "f1"
+        const colClass = activeClasses.find(cls => cls.startsWith('c')); // Ejemplo: "c3"
+
+        if (rowClass && colClass) {
+            // Convertir las clases para que coincidan con input-cell
+            const targetRow2 = `row1.${colClass.replace('c', 'col')}`; // Ejemplo: "row2.col3"
+            const targetRow1 = `row2.${rowClass.replace('f', 'col')}`; // Ejemplo: "row1.col1"
+
+            // Resaltar las celdas de la fila 2, columna N
+            const row2Inputs = document.querySelectorAll(`.input-cell.${targetRow2}`);
+            row2Inputs.forEach(input => {
+                input.style.backgroundColor = 'lightblue';
+            });
+
+            // Resaltar las celdas de la fila 1, fila M
+            const row1Inputs = document.querySelectorAll(`.input-cell.${targetRow1}`);
+            row1Inputs.forEach(input => {
+                input.style.backgroundColor = 'lightblue';
+            });
+
+            // Resaltar las celdas de rowa si la columna del partial-result es < 3
+            const colNumber = parseInt(colClass.replace('c', '')); // Obtener número de columna (ej. c1 -> 1)
+            if (colNumber < 3) {
+                const targetRowa = `rowa.c${colNumber}`; // Ejemplo: "rowa.c1"
+                const rowaInputs = document.querySelectorAll(`.cell-tiny.${targetRowa}`);
+                rowaInputs.forEach(input => {
+                    input.style.backgroundColor = 'lightblue';
+                });
+            }
+        }
+    });
+
+    input.addEventListener('blur', () => {
+        // Limpiar el realce al perder el foco
+        clearHighlight();
+    });
 });

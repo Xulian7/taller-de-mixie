@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mostrar GIF en el centro</title>
+    <style>
+        /* Estilo para centrar el GIF */
+        .gif-container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: none; /* Ocultar inicialmente */
+            z-index: 1000; /* Asegurarse de que esté sobre otros elementos */
+        }
+    </style>
+</head>
+<body>
+    <input type="text" id="input1" placeholder="Escribe algo">
+    <input type="text" id="input2" placeholder="Escribe algo">
+
+    <!-- Contenedor del GIF -->
+    <div class="gif-container" id="gifContainer">
+        <img src="img/tiggi.gif" alt="Tiggi GIF" width="200">
+    </div>
+
+    <script>
+        // Función para verificar si los dos inputs son iguales
+        function checkInputs() {
+            const input1 = document.getElementById('input1').value;
+            const input2 = document.getElementById('input2').value;
+
+            // Si los inputs son iguales, mostrar el GIF
+            if (input1 === input2 && input1 !== "") {
+                document.getElementById('gifContainer').style.display = 'block';
+            } else {
+                document.getElementById('gifContainer').style.display = 'none';
+            }
+        }
+
+        // Escuchar eventos en los inputs
+        document.getElementById('input1').addEventListener('input', checkInputs);
+        document.getElementById('input2').addEventListener('input', checkInputs);
+    </script>
+</body>
+</html>
