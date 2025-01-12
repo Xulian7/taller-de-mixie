@@ -10,8 +10,15 @@ body {
     background-color: #f0f8ff; /* Azul claro */
 }
 
+.composition {
+    display: flex;
+    align-items: center;  /* Alinea la imagen y el texto verticalmente */
+    justify-content: center;  /* Alinea ambos elementos horizontalmente */
+    gap: 5px;  /* Espacio entre la imagen y el texto */
+}
+
 #imagen-fija {
-    position: fixed;
+    position: relative; /* Posición absoluta */
     top: 0px;
     left: 0px;
     width: 150px; /* Ajusta el tamaño según sea necesario */
@@ -251,7 +258,7 @@ body {
 }
 
 .rainbow-text {
-    font-size: 3rem;
+    font-size: 4rem;
     background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet);
     
     /* Prefijo para Safari y navegadores antiguos basados en WebKit */
@@ -260,7 +267,7 @@ body {
     background-clip: text;
     color: transparent;
     text-align: center;
-    padding: 20px;
+    padding: 10px;
     
     /* Sombra para darle profundidad */
     text-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);

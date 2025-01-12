@@ -179,12 +179,20 @@ partialResults.forEach(input => {
 
             // Resaltar las celdas de rowa si la columna del partial-result es < 3
             const colNumber = parseInt(colClass.replace('c', '')); // Obtener número de columna (ej. c1 -> 1)
-            if (colNumber < 3) {
-                const targetRowa = `rowa.c${colNumber}`; // Ejemplo: "rowa.c1"
+            if (colNumber >= 1 && colNumber <= 3) {
+                const targetRowa = `rowa.c${colNumber - 1}`; // Ejemplo: "rowa.c1"
                 const rowaInputs = document.querySelectorAll(`.cell-tiny.${targetRowa}`);
+                const targetRowax = `rowa.c${colNumber}`;
+                const rowaxInputs = document.querySelectorAll(`.cell-tiny.${targetRowax}`);
+
                 rowaInputs.forEach(input => {
                     input.style.backgroundColor = 'lightblue';
                 });
+
+                rowaxInputs.forEach(input => {
+                    input.style.backgroundColor = '#FFB6C1';  // Rosa claro (lightpink)
+                });
+
             }
         }
     });
@@ -194,3 +202,5 @@ partialResults.forEach(input => {
         clearHighlight();
     });
 });
+
+
