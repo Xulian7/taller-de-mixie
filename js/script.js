@@ -65,7 +65,7 @@ function validateAndMultiply() {
                 gifContainer.style.display = 'none'; // Ocultar el GIF después de 4 segundos
             }, 3000);
         } else {
-            resultElement.textContent = `La multiplicación no coincide. Resultado esperado: ${resultFromMultiplication}`;
+            resultElement.textContent = `No es correcto, revisa. Resultado esperado: ${resultFromMultiplication}`;
             reproducirAudio('wrongans'); // Reproducir el audio de respuesta incorrecta
         }
     } else {
@@ -80,7 +80,7 @@ function clearGrid() {
         input.value = ''; // Limpiar el contenido de cada input
     });
     document.getElementById('result').textContent = '';
-    // Considera agregar una confirmación para evitar limpieza accidental
+    
 }
 
 // Función para limpiar el grid auxiliar
@@ -138,6 +138,58 @@ imagen.addEventListener('click', function() {
         audio.currentTime = 0;  // Para reiniciar el audio cuando se hace clic nuevamente
     }
 });
+
+// Seleccionar todos los inputs con la clase final-result
+const finalResults = document.querySelectorAll('.final-result');
+
+// Función para limpiar el realce
+function clearHighlight() {
+    const allInputs = document.querySelectorAll('.input-cell, .cell-tiny');
+    allInputs.forEach(input => {
+        input.style.backgroundColor = ''; // Restaurar color original
+    });
+}
+
+finalResults.forEach(input => {
+    input.addEventListener('focus', () => {
+        // Limpiar cualquier realce previo
+        clearHighlight();
+
+        // Extraer las clases "pos" del input actual
+        const activeClasses = Array.from(input.classList);
+        const colClass = activeClasses.find(cls => cls.startsWith('pos')); // Ejemplo: "pos1"
+
+        if (colClass) {
+            // Resaltar las celdas de la columna coincidente
+            const colInputs = document.querySelectorAll(`.input-cell.${colClass}`);
+            colInputs.forEach(input => {
+                input.style.backgroundColor = 'lightblue';
+            });
+
+            // Resaltar las celdas de rowb si la columna del partial-result es < 3
+            const targetRowb = `rowb.${colClass}`; // Ejemplo: "rowb.pos1"
+            const rowaInputs = document.querySelectorAll(`.cell-tiny.${targetRowb}`);
+            
+            const colNumber = colClass.match(/\d+/g);
+            const targetRowbx = `rowb.pos${parseInt(colNumber) + 1}`;
+            const rowaInputsx = document.querySelectorAll(`.cell-tiny.${targetRowbx}`);
+
+            rowaInputs.forEach(input => {
+                input.style.backgroundColor = 'lightblue';
+            });
+
+            rowaInputsx.forEach(input => {
+                input.style.backgroundColor = '#FFB6C1';  // Rosa claro (lightpink)
+            });
+        }
+    });
+
+    input.addEventListener('blur', () => {
+        // Limpiar el realce al perder el foco
+        clearHighlight();
+    });
+});
+
 
 // Seleccionar todos los inputs con la clase partial-result
 const partialResults = document.querySelectorAll('.partial-result');
@@ -202,5 +254,4 @@ partialResults.forEach(input => {
         clearHighlight();
     });
 });
-
 

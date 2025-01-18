@@ -1,0 +1,329 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ocupa el 100% del alto de la ventana */
+    align-items: center;
+    justify-content: flex-start;
+    height: 100vh;
+    margin: 0;
+    overflow-x: hidden; /* Evitar scroll horizontal */
+    background-color: #f0f8ff; /* Azul claro */
+}
+
+.composition {
+    display: flex;
+    margin-top: 5px;  /* Separación desde el borde superior */
+    padding: 0;       /* Eliminar el padding adicional */
+    align-items: center;  /* Alinea la imagen y el texto verticalmente */
+    justify-content: center;  /* Alinea ambos elementos horizontalmente */
+    gap: 5px;  /* Espacio entre la imagen y el texto */
+}
+
+
+#imagen-fija {
+    position: relative; /* Posición absoluta */
+    top: 0px;
+    left: 0px;
+    width: 150px; /* Ajusta el tamaño según sea necesario */
+    height: auto;
+}
+
+/* Contenedor para limitar el ancho del contenido */
+.limited-container {
+    min-height: 100vh; /* Para que siempre ocupe al menos toda la ventana */
+    max-width: 100%; /* Limitar el ancho al 100% */
+    padding-bottom: 50px; /* Altura del footer */
+    margin: 0 auto; /* Centrar el contenedor horizontalmente */
+    padding: 20px; /* Espaciado interno opcional */
+    box-sizing: border-box; /* Incluir el padding en el ancho total */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centrar elementos dentro del contenedor */
+}
+
+/* Estilos para el contenedor principal */
+.main-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 20px;
+    gap: 20px;
+}
+
+/* Estilos para el grid */
+.grid-container {
+    display: grid;
+    /*align-items: flex-end;
+    /*justify-items: end;*/
+    grid-template-columns: repeat(10, auto); /* Permitir un ajuste automático del ancho */
+    gap: 3px; /* Espaciado más reducido entre las celdas grandes */
+    padding: 5px; /* Reducir el padding interno del contenedor */
+    max-width: fit-content; /* El contenedor solo ocupará el espacio necesario */
+    background-color: #fff;
+    border: 2px solid #000;
+    border-radius: 8px;
+    text-align: right; /* Alinear el texto a la derecha */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Contenedor del score */
+#score-container {
+    position: static; /* Permitir que siga el flujo del documento */
+    display: flex; /* Mostrar los elementos en línea */
+    align-items: center; /* Centrar verticalmente */
+    justify-content: center; /* Centrar horizontalmente */
+    gap: 10px; /* Espacio entre el corazón y el texto */
+    margin-top: 10px; /* Separación desde el encabezado */
+    padding: 10px; /* Espaciado interno */
+    background-color: #fff; /* Fondo blanco */
+    border: 2px solid #000; /* Borde negro */
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra sutil */
+}
+
+/* Estilo de la imagen del corazón */
+.score-heart {
+    width: 25px; /* Ajustar tamaño del corazón */
+    height: auto;
+}
+
+/* Estilo del label */
+.score-label {
+    font-size: 1.5rem; /* Tamaño del texto */
+    font-weight: bold; /* Texto en negrita */
+    color: #000; /* Texto negro */
+}
+
+/* Celda estándar */
+.cell {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+/* Celda relleno tiny*/
+.cell-2 {
+    width: 15px;
+    height: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+/* Celdas pequeñas */
+.cell-tiny {
+    width: 15px;
+    height: 15px;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center; /* Alinea verticalmente al final */
+    justify-content: center; /* Alinea horizontalmente a la derecha */
+    border: 1px dotted black; /* Bordes punteados de color negro */
+    border-radius: 3px; /* Bordes redondeados opcionales */
+}
+
+.close-button {
+    width: 14px;         
+    height: 14px;        
+    font-size: 8px;     
+    background-color: rgb(252, 148, 165);
+    color: white;
+    border: none;
+    border-radius: 50%;  /* Hace el botón redondeado */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.close-button:hover {
+    background-color: rgb(231, 0, 0);  /* Cambia el color de fondo al pasar el mouse */
+}
+
+.close-button:active {
+    background-color: darkorange;  /* Cambia al presionar el botón */
+}
+
+/* Inputs */
+.input-cell {
+    width: 32px;
+    height: 32px;
+    font-size: 1.5rem;
+    text-align: center;
+    border: 0.1px dashed #000;
+    outline: none;
+    
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+    margin: 0; /* Eliminar margen */
+}
+
+.arrow {
+    display: none;
+    position: absolute;
+    /* Ajusta la posición según sea necesario */
+}
+
+
+.input-cell.fill {
+    border: none;
+}
+
+.input-cell.fill.mix {
+    border-bottom: 3px solid #000; /* Borde inferior de 3px negro */
+    border-left: 3px solid #000; /* Borde izquierdo de 3px negro */
+    border-radius: 0px; /* Bordes sin redondear */
+    margin: 0; /* Eliminar margen */
+}
+
+.input-cell.fill.mox {
+    border-bottom: 3px solid #000; /* Borde inferior de 3px negro */
+    border-radius: 0px; /* Bordes sin redondear */
+    margin: 0; /* Eliminar margen */
+}
+
+.input-cell.partial.has-data {
+    border-bottom: 4px solid #000; /* Borde inferior de 3px negro */
+}
+
+
+.input-cell:focus {
+    border-color: #f734e6; /* Azul más vivo al enfocar */
+    background-color: #e6eaff; /* Fondo azul suave */
+}
+
+/* Separador */
+.separator {
+    grid-column: span 7;
+    border: none;
+    border-bottom: 2px solid #000;
+    height: 2px;
+}
+
+/* Contenedor de botones */
+.control-panel {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+/* Botones modernos y ovalados */
+.control-panel button {
+    padding: 12px 30px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#result-container {
+    margin-top: 20px;
+    padding: 15px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #fff; /* Blanco para resaltar el texto */
+    background: linear-gradient(45deg, #ff6f61, #ff9a8b); /* Un gradiente vibrante */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra sutil para darle profundidad */
+    text-align: center;
+    transition: all 0.3s ease; /* Animación suave al cambiar estado */
+}
+
+#result-container.correct {
+    background: linear-gradient(45deg, #4caf50, #81c784); /* Verde para resultado correcto */
+}
+
+#result-container.error {
+    background: linear-gradient(45deg, #f44336, #e57373); /* Rojo para resultado incorrecto */
+}
+
+/* Contenedor para la imagen */
+.image-panel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    padding: 10px;
+    border: 2px solid #000;
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para darle profundidad */
+}
+
+.grid-image {
+    position: relative; /* Necesario para posicionar el aro */
+    width: 350px; /* Ajusta según tu diseño */
+    height: auto;
+    border-radius: 8px; /* Opcional, si quieres bordes redondeados */
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Efecto al pasar el mouse */
+.grid-image:hover {
+    transform: scale(1.05); /* Aumenta ligeramente el tamaño */
+}
+
+ /* Estilo para centrar el GIF */
+.gif-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none; /* Ocultar inicialmente */
+    z-index: 1000; /* Asegurarse de que esté sobre otros elementos */
+}
+
+.rainbow-text {
+    font-size: 4rem;
+    background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet);
+    /* Prefijo para Safari y navegadores antiguos basados en WebKit */
+    -webkit-background-clip: text;
+    /* Propiedad estándar para otros navegadores modernos */
+    background-clip: text;
+    color: transparent;
+    text-align: center;
+    margin: 0;
+    padding: 0px;
+    text-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilos para el footer */
+footer {
+    margin-top: 50px;  /* */
+    background-color: #0a9ef3;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+.footer-content a {
+    color: #ffcc00;
+    text-decoration: none;
+    margin: 0 5px;
+}
+
+.footer-content a:hover {
+    text-decoration: underline;
+}
+
+button:disabled {
+    background-color: gray; /* Fondo gris */
+    color: white; /* Texto blanco para contraste */
+    cursor: not-allowed; /* Cambia el cursor para indicar que no es clickeable */
+    opacity: 0.6; /* Hacerlo visualmente más tenue */
+}

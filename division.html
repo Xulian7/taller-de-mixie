@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>Taller de division</title>
+    <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css/styles2.css">
+</head>
+<body>
+    <div class="limited.container">
+
+        <!-- Contenedor del GIF -->
+        <div class="gif-container" id="gifContainer">
+            <img src="assets/img/kuromi.gif" alt="kuromi" width="200">
+        </div>
+    
+        <audio id="sonidoClic" src="assets/sounds/boing.mp3"></audio>
+        <audio id="rightans" src="assets/sounds/right.mp3"></audio>
+        <audio id="wrongans" src="assets/sounds/wrong.mp3"></audio>
+        <audio id="risas" src="assets/sounds/risas.mp3"></audio>
+
+        <div class="composition">
+            <img src="assets/img/tigger.png" id="imagen-fija" alt="Imagen fija">
+            <p class="rainbow-text">Taller division de Mixie</p>
+        </div>
+
+        <div id="score-container">
+            <img src="assets/img/heart.png" alt="Heart" class="score-heart">
+            <label id="score-label1" class="score-label">0</label>
+            <img src="assets/img/Ice_Cream.png" alt="Ice_cream" class="score-heart">
+            <label id="score-label2" class="score-label">0</label>
+        </div>
+
+        <!-- Contenedor principal -->
+        <div class="main-container">
+            <!-- Grid de operaciones -->
+            <div class="grid-container">
+        
+                <!-- Fila dividendo / divisor-->
+                <div class="cell"></div>
+                <input type="text" class="input-cell fill mixd" maxlength="1" inputmode="numeric" readonly>
+                <input type="text" class="input-cell fill mixd" maxlength="1" inputmode="numeric" readonly>
+                <input type="text" class="input-cell fill mixd" maxlength="1" inputmode="numeric" readonly>
+                <input type="text" class="input-cell fill mixd" maxlength="1" inputmode="numeric" readonly>
+                <div class="cell"></div>
+                <input type="text" class="input-cell fill mix" maxlength="1" inputmode="numeric" readonly>
+                <input type="text" class="input-cell fill mox" maxlength="1" inputmode="numeric" readonly>
+                <input type="text" class="input-cell fill mox" maxlength="1" inputmode="numeric" readonly>
+                <input type="text" class="input-cell fill mox" maxlength="1" inputmode="numeric" readonly>
+                <!-- Partial1-->
+                <div class="cell uno"></div>
+                <input type="text" class="input-cell partial uno" maxlength="1" inputmode="numeric">
+                <input type="text" class="input-cell partial uno" maxlength="1" inputmode="numeric">
+                <input type="text" class="input-cell partial uno" maxlength="1" inputmode="numeric">
+                <input type="text" class="input-cell partial uno" maxlength="1" inputmode="numeric">
+                <div class="cell"></div>
+                <input type="text" class="input-cell res row1" maxlength="1" inputmode="numeric">
+                <input type="text" class="input-cell res row2" maxlength="1" inputmode="numeric">
+                <input type="text" class="input-cell res row3" maxlength="1" inputmode="numeric">
+                <input type="text" class="input-cell res row4" maxlength="1" inputmode="numeric">
+                <!-- residuo1-->
+                <div class="cell"></div>
+                <input type="text" class="input-cell resid" maxlength="1" inputmode="numeric">
+                <input type="text" class="input-cell resid" maxlength="1" inputmode="numeric">
+                <input type="text" class="input-cell resid" maxlength="1" inputmode="numeric">
+                <input type="text" class="input-cell resid" maxlength="1" inputmode="numeric">
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <!-- partial2-->
+                <div class="cell dos"></div>
+                <input type="text" class="input-cell partial dos" maxlength="1" inputmode="numeric">
+                <input type="text" class="input-cell partial dos" maxlength="1" inputmode="numeric">
+                <input type="text" class="input-cell partial dos" maxlength="1" inputmode="numeric">
+                <input type="text" class="input-cell partial dos" maxlength="1" inputmode="numeric">
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <!-- residuo2-->
+                <div class="cell"></div>
+                <input type="text" class="input-cell resid" maxlength="1" inputmode="numeric">
+                <input type="text" class="input-cell resid" maxlength="1" inputmode="numeric">
+                <input type="text" class="input-cell resid" maxlength="1" inputmode="numeric">
+                <input type="text" class="input-cell resid" maxlength="1" inputmode="numeric">
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <!-- partial3-->
+                <div class="cell tres"></div>
+                <input type="text" class="input-cell partial tres" maxlength="1" inputmode="numeric">
+                <input type="text" class="input-cell partial tres" maxlength="1" inputmode="numeric">
+                <input type="text" class="input-cell partial tres" maxlength="1" inputmode="numeric">
+                <input type="text" class="input-cell partial tres" maxlength="1" inputmode="numeric">
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <!-- residuo3-->
+                <div class="cell"></div>
+                <input type="text" class="input-cell resid" maxlength="1" inputmode="numeric">
+                <input type="text" class="input-cell resid" maxlength="1" inputmode="numeric">
+                <input type="text" class="input-cell resid" maxlength="1" inputmode="numeric">
+                <input type="text" class="input-cell resid" maxlength="1" inputmode="numeric">
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <!-- partial4-->
+                <div class="cell"></div>
+                <input type="text" class="input-cell resid" maxlength="1" inputmode="numeric">
+                <input type="text" class="input-cell resid" maxlength="1" inputmode="numeric">
+                <input type="text" class="input-cell resid" maxlength="1" inputmode="numeric">
+                <input type="text" class="input-cell resid" maxlength="1" inputmode="numeric">
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <!-- residuo4-->
+                <div class="cell"></div>
+                <input type="text" class="input-cell resid huno" maxlength="1" inputmode="numeric">
+                <input type="text" class="input-cell resid dos" maxlength="1" inputmode="numeric">
+                <input type="text" class="input-cell resid tres" maxlength="1" inputmode="numeric">
+                <input type="text" class="input-cell resid" maxlength="1" inputmode="numeric">
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                
+            </div>
+            
+            
+            <!-- Imagen de Pitágoras -->
+            <div class="image-panel">
+                <img src="assets/img/Pitagoras.png" alt="Imagen de Pitágoras" class="grid-image">
+            </div>
+        </div>
+
+        <!-- Contenedor de botones y resultado -->
+        <div class="control-panel">
+            <button id="nuevoEjercicio" onclick="reproducirAudio('sonidoClic'); generateBothRows()">Nuevo ejercicio</button>
+            <button id="verResultado" onclick="calculateResult()">Ver resultado</button>
+            <button onclick="clearGrid()">Limpiar Grid</button>
+            <button onclick="window.location.href='main.html'">Ir a main</button>
+        </div>
+
+        <div id="result-container">
+            Resultado: <span id="result"></span>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <p>© Taller matemático de Mixie. Todos los derechos reservados.</p>
+            
+            <div class="social-media">
+                
+            </div>
+        </div>
+    </footer>
+    
+    <script src="js/scripts2.js"></script>
+</body>
+</html>

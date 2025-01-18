@@ -6,33 +6,33 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-    <title>Taller de Mariana</title>
-    <link rel="icon" href="img/favicon.ico" type="image/x-icon">
-    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="styles.css">
+    <title>Taller de multiplicacion</title>
+    <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
     <div class="limited.container">
 
         <!-- Contenedor del GIF -->
         <div class="gif-container" id="gifContainer">
-            <img src="img/xtiggi.gif" alt="Tiggi" width="200">
+            <img src="assets/img/xtiggi.gif" alt="Tiggi" width="200">
         </div>
     
-        <audio id="sonidoClic" src="sounds/boing.mp3"></audio>
-        <audio id="rightans" src="sounds/right.mp3"></audio>
-        <audio id="wrongans" src="sounds/wrong.mp3"></audio>
-        <audio id="risas" src="sounds/risas.mp3"></audio>
+        <audio id="sonidoClic" src="assets/sounds/boing.mp3"></audio>
+        <audio id="rightans" src="assets/sounds/right.mp3"></audio>
+        <audio id="wrongans" src="assets/sounds/wrong.mp3"></audio>
+        <audio id="risas" src="assets/sounds/risas.mp3"></audio>
 
         <div class="composition">
-            <img src="img/tigger.png" id="imagen-fija" alt="Imagen fija">
-            <p class="rainbow-text">Taller matemático de Mixie</p>
+            <img src="assets/img/tigger.png" id="imagen-fija" alt="Imagen fija">
+            <p class="rainbow-text">Taller multiplicacion de Mixie</p>
         </div>
 
         <div id="score-container">
-            <img src="img/heart.png" alt="Heart" class="score-heart">
+            <img src="assets/img/heart.png" alt="Heart" class="score-heart">
             <label id="score-label1" class="score-label">0</label>
-            <img src="img/Ice_Cream.png" alt="Ice_cream" class="score-heart">
+            <img src="assets/img/Ice_Cream.png" alt="Ice_cream" class="score-heart">
             <label id="score-label2" class="score-label">0</label>
         </div>
 
@@ -130,7 +130,7 @@
 
             <!-- Imagen de Pitágoras -->
             <div class="image-panel">
-                <img src="img/Pitagoras.png" alt="Imagen de Pitágoras" class="grid-image">
+                <img src="assets/img/Pitagoras.png" alt="Imagen de Pitágoras" class="grid-image">
             </div>
         </div>
 
@@ -139,6 +139,7 @@
             <button id="nuevoEjercicio" onclick="reproducirAudio('sonidoClic'); generateBothRows()">Nuevo ejercicio</button>
             <button id="verResultado" onclick="validateAndMultiply()">Ver resultado</button>
             <button onclick="clearGrid()">Limpiar Grid</button>
+            <button onclick="window.location.href='main.html'">Ir a main</button>
         </div>
 
         <div id="result-container">
@@ -156,7 +157,6 @@
         </div>
     </footer>
     
-    <script src="script.js"></script>
-    <script src="routines.js"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>
