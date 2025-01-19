@@ -2,47 +2,44 @@ body {
     font-family: Arial, sans-serif;
     display: flex;
     flex-direction: column;
-    min-height: 100vh; /* Ocupa el 100% del alto de la ventana */
+    min-height: 100vh;
     align-items: center;
     justify-content: flex-start;
     height: 100vh;
     margin: 0;
-    overflow-x: hidden; /* Evitar scroll horizontal */
-    background-color: #f0f8ff; /* Azul claro */
+    overflow-x: hidden;
+    background-color: #f0f8ff;
 }
 
 .composition {
     display: flex;
-    margin-top: 5px;  /* Separación desde el borde superior */
-    padding: 0;       /* Eliminar el padding adicional */
-    align-items: center;  /* Alinea la imagen y el texto verticalmente */
-    justify-content: center;  /* Alinea ambos elementos horizontalmente */
-    gap: 5px;  /* Espacio entre la imagen y el texto */
+    margin-top: 5px;
+    padding: 0;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
 }
 
-
 #imagen-fija {
-    position: relative; /* Posición absoluta */
+    position: relative;
     top: 0px;
     left: 0px;
-    width: 150px; /* Ajusta el tamaño según sea necesario */
+    width: 150px;
     height: auto;
 }
 
-/* Contenedor para limitar el ancho del contenido */
 .limited-container {
-    min-height: 100vh; /* Para que siempre ocupe al menos toda la ventana */
-    max-width: 100%; /* Limitar el ancho al 100% */
-    padding-bottom: 50px; /* Altura del footer */
-    margin: 0 auto; /* Centrar el contenedor horizontalmente */
-    padding: 20px; /* Espaciado interno opcional */
-    box-sizing: border-box; /* Incluir el padding en el ancho total */
+    min-height: 100vh;
+    max-width: 100%;
+    padding-bottom: 50px;
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    align-items: center; /* Centrar elementos dentro del contenedor */
+    align-items: center;
 }
 
-/* Estilos para el contenedor principal */
 .main-container {
     display: flex;
     flex-direction: row;
@@ -51,51 +48,44 @@ body {
     gap: 20px;
 }
 
-/* Estilos para el grid */
 .grid-container {
     display: grid;
-    /*align-items: flex-end;
-    /*justify-items: end;*/
-    grid-template-columns: repeat(10, auto); /* Permitir un ajuste automático del ancho */
-    gap: 3px; /* Espaciado más reducido entre las celdas grandes */
-    padding: 5px; /* Reducir el padding interno del contenedor */
-    max-width: fit-content; /* El contenedor solo ocupará el espacio necesario */
+    grid-template-columns: repeat(10, auto);
+    gap: 3px;
+    padding: 5px;
+    max-width: fit-content;
     background-color: #fff;
     border: 2px solid #000;
     border-radius: 8px;
-    text-align: right; /* Alinear el texto a la derecha */
+    text-align: right;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-/* Contenedor del score */
 #score-container {
-    position: static; /* Permitir que siga el flujo del documento */
-    display: flex; /* Mostrar los elementos en línea */
-    align-items: center; /* Centrar verticalmente */
-    justify-content: center; /* Centrar horizontalmente */
-    gap: 10px; /* Espacio entre el corazón y el texto */
-    margin-top: 10px; /* Separación desde el encabezado */
-    padding: 10px; /* Espaciado interno */
-    background-color: #fff; /* Fondo blanco */
-    border: 2px solid #000; /* Borde negro */
-    border-radius: 8px; /* Bordes redondeados */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra sutil */
+    position: static;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #fff;
+    border: 2px solid #000;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Estilo de la imagen del corazón */
 .score-heart {
-    width: 25px; /* Ajustar tamaño del corazón */
+    width: 25px;
     height: auto;
 }
 
-/* Estilo del label */
 .score-label {
-    font-size: 1.5rem; /* Tamaño del texto */
-    font-weight: bold; /* Texto en negrita */
-    color: #000; /* Texto negro */
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #000;
 }
 
-/* Celda estándar */
 .cell {
     width: 32px;
     height: 32px;
@@ -106,7 +96,6 @@ body {
     font-weight: bold;
 }
 
-/* Celda relleno tiny*/
 .cell-2 {
     width: 15px;
     height: 15px;
@@ -117,26 +106,25 @@ body {
     font-weight: bold;
 }
 
-/* Celdas pequeñas */
 .cell-tiny {
     width: 15px;
     height: 15px;
     font-size: 0.9rem;
     display: flex;
-    align-items: center; /* Alinea verticalmente al final */
-    justify-content: center; /* Alinea horizontalmente a la derecha */
-    border: 1px dotted black; /* Bordes punteados de color negro */
-    border-radius: 3px; /* Bordes redondeados opcionales */
+    align-items: center;
+    justify-content: center;
+    border: 1px dotted black;
+    border-radius: 3px;
 }
 
 .close-button {
-    width: 14px;         
-    height: 14px;        
-    font-size: 8px;     
+    width: 14px;
+    height: 14px;
+    font-size: 8px;
     background-color: rgb(252, 148, 165);
     color: white;
     border: none;
-    border-radius: 50%;  /* Hace el botón redondeado */
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -145,14 +133,13 @@ body {
 }
 
 .close-button:hover {
-    background-color: rgb(231, 0, 0);  /* Cambia el color de fondo al pasar el mouse */
+    background-color: rgb(231, 0, 0);
 }
 
 .close-button:active {
-    background-color: darkorange;  /* Cambia al presionar el botón */
+    background-color: darkorange;
 }
 
-/* Inputs */
 .input-cell {
     width: 32px;
     height: 32px;
@@ -160,46 +147,41 @@ body {
     text-align: center;
     border: 0.1px dashed #000;
     outline: none;
-    
     transition: border-color 0.3s ease, background-color 0.3s ease;
-    margin: 0; /* Eliminar margen */
+    margin: 0;
 }
 
 .arrow {
     display: none;
     position: absolute;
-    /* Ajusta la posición según sea necesario */
 }
-
 
 .input-cell.fill {
     border: none;
 }
 
 .input-cell.fill.mix {
-    border-bottom: 3px solid #000; /* Borde inferior de 3px negro */
-    border-left: 3px solid #000; /* Borde izquierdo de 3px negro */
-    border-radius: 0px; /* Bordes sin redondear */
-    margin: 0; /* Eliminar margen */
+    border-bottom: 3px solid #000;
+    border-left: 3px solid #000;
+    border-radius: 0px;
+    margin: 0;
 }
 
 .input-cell.fill.mox {
-    border-bottom: 3px solid #000; /* Borde inferior de 3px negro */
-    border-radius: 0px; /* Bordes sin redondear */
-    margin: 0; /* Eliminar margen */
+    border-bottom: 3px solid #000;
+    border-radius: 0px;
+    margin: 0;
 }
 
 .input-cell.partial.has-data {
-    border-bottom: 4px solid #000; /* Borde inferior de 3px negro */
+    border-bottom: 4px solid #000;
 }
-
 
 .input-cell:focus {
-    border-color: #f734e6; /* Azul más vivo al enfocar */
-    background-color: #e6eaff; /* Fondo azul suave */
+    border-color: #f734e6;
+    background-color: #e6eaff;
 }
 
-/* Separador */
 .separator {
     grid-column: span 7;
     border: none;
@@ -207,7 +189,6 @@ body {
     height: 2px;
 }
 
-/* Contenedor de botones */
 .control-panel {
     margin-top: 20px;
     display: flex;
@@ -216,7 +197,6 @@ body {
     margin-bottom: 20px;
 }
 
-/* Botones modernos y ovalados */
 .control-panel button {
     padding: 12px 30px;
     font-size: 16px;
@@ -234,23 +214,22 @@ body {
     padding: 15px;
     font-size: 20px;
     font-weight: bold;
-    color: #fff; /* Blanco para resaltar el texto */
-    background: linear-gradient(45deg, #ff6f61, #ff9a8b); /* Un gradiente vibrante */
-    border-radius: 10px; /* Bordes redondeados */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra sutil para darle profundidad */
+    color: #fff;
+    background: linear-gradient(45deg, #ff6f61, #ff9a8b);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     text-align: center;
-    transition: all 0.3s ease; /* Animación suave al cambiar estado */
+    transition: all 0.3s ease;
 }
 
 #result-container.correct {
-    background: linear-gradient(45deg, #4caf50, #81c784); /* Verde para resultado correcto */
+    background: linear-gradient(45deg, #4caf50, #81c784);
 }
 
 #result-container.error {
-    background: linear-gradient(45deg, #f44336, #e57373); /* Rojo para resultado incorrecto */
+    background: linear-gradient(45deg, #f44336, #e57373);
 }
 
-/* Contenedor para la imagen */
 .image-panel {
     display: flex;
     justify-content: center;
@@ -258,39 +237,35 @@ body {
     background-color: #fff;
     padding: 10px;
     border: 2px solid #000;
-    border-radius: 8px; /* Bordes redondeados */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para darle profundidad */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .grid-image {
-    position: relative; /* Necesario para posicionar el aro */
-    width: 350px; /* Ajusta según tu diseño */
+    position: relative;
+    width: 350px;
     height: auto;
-    border-radius: 8px; /* Opcional, si quieres bordes redondeados */
+    border-radius: 8px;
     transition: transform 0.3s ease-in-out;
 }
 
-/* Efecto al pasar el mouse */
 .grid-image:hover {
-    transform: scale(1.05); /* Aumenta ligeramente el tamaño */
+    transform: scale(1.05);
 }
 
- /* Estilo para centrar el GIF */
 .gif-container {
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    display: none; /* Ocultar inicialmente */
-    z-index: 1000; /* Asegurarse de que esté sobre otros elementos */
+    display: none;
+    z-index: 1000;
 }
 
 .rainbow-text {
     font-size: 4rem;
     background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet);
-    /* Prefijo para Safari y navegadores antiguos basados en WebKit */
     -webkit-background-clip: text;
-    /* Propiedad estándar para otros navegadores modernos */
     background-clip: text;
     color: transparent;
     text-align: center;
@@ -299,9 +274,8 @@ body {
     text-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 
-/* Estilos para el footer */
 footer {
-    margin-top: 50px;  /* */
+    margin-top: 50px;
     background-color: #0a9ef3;
     color: white;
     text-align: center;
@@ -322,8 +296,94 @@ footer {
 }
 
 button:disabled {
-    background-color: gray; /* Fondo gris */
-    color: white; /* Texto blanco para contraste */
-    cursor: not-allowed; /* Cambia el cursor para indicar que no es clickeable */
-    opacity: 0.6; /* Hacerlo visualmente más tenue */
+    background-color: gray;
+    color: white;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+/* Media Queries */
+@media (max-width: 1200px) {
+    .grid-container {
+        grid-template-columns: repeat(8, auto);
+    }
+
+    .main-container {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .composition {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .limited-container {
+        padding: 15px;
+    }
+
+    .image-panel {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 768px) {
+    .grid-container {
+        grid-template-columns: repeat(6, auto);
+    }
+
+    .cell, .cell-2, .cell-tiny {
+        width: 25px;
+        height: 25px;
+    }
+
+    .score-label {
+        font-size: 1rem;
+    }
+
+    .score-heart {
+        width: 20px;
+    }
+
+    .input-cell {
+        width: 25px;
+        height: 25px;
+    }
+
+    footer {
+        padding: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .grid-container {
+        grid-template-columns: repeat(4, auto);
+    }
+
+    .cell, .cell-2, .cell-tiny {
+        width: 20px;
+        height: 20px;
+    }
+
+    .score-label {
+        font-size: 0.8rem;
+    }
+
+    .input-cell {
+        width: 20px;
+        height: 20px;
+    }
+
+    .control-panel {
+        flex-direction: column;
+    }
+
+    .image-panel {
+        width: 100%;
+    }
+
+    footer {
+        padding: 8px;
+        font-size: 0.8rem;
+    }
 }

@@ -1,19 +1,47 @@
-// Función para rellenar los inputs con números aleatorios
-function fillRow(rowClass) {
+// Función para generar un número aleatorio con un número específico de cifras y asegurarse de que la primera cifra no sea 0
+function generateRandomNumber(digits) {
+    if (digits < 1) return 0; // Validación de entrada
+
+    const min = Math.pow(10, digits - 1); // Mínimo valor para las cifras especificadas
+    const max = Math.pow(10, digits) - 1; // Máximo valor para las cifras especificadas
+
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+// Función para rellenar una fila con un número aleatorio, acomodando las cifras en orden inverso
+function fillRowWithRandomNumber(rowClass, digits) {
     const inputs = document.querySelectorAll(`.${rowClass}`);
-    inputs.forEach(input => {
-        input.value = Math.floor(Math.random() * 10); // Número aleatorio entre 0 y 9
+    const randomNumber = generateRandomNumber(digits).toString();
+
+    inputs.forEach((input, index) => {
+        const reversedIndex = inputs.length - 1 - index; // Índice inverso
+        input.value = randomNumber[reversedIndex] || ''; // Asignar dígito en orden inverso
     });
 }
 
-// Función para generar ambas filas y habilitar el botón
+// Función para solicitar cifras al usuario y validar la entrada
+function promptDigits(promptText, minDigits, maxDigits) {
+    let digits;
+    do {
+        digits = parseInt(prompt(`${promptText} (entre ${minDigits} y ${maxDigits} cifras):`), 10);
+    } while (isNaN(digits) || digits < minDigits || digits > maxDigits);
+    return digits;
+}
+
+// Función principal para generar ambas filas y habilitar el botón
 function generateBothRows() {
     clearGrid(); // Limpiar el grid de operaciones
     clearAux1('rowa'); // Limpiar el grid auxiliar de la fila 1
     clearAux1('rowb'); // Limpiar el grid auxiliar de la fila 2
-    fillRow('row1'); // Genera números aleatorios para la fila 1
-    fillRow('row2'); // Genera números aleatorios para la fila 2
-    
+
+    // Solicitar al usuario las cifras para el multiplicando y el multiplicador
+    const multiplicandDigits = promptDigits('Ingrese el número de cifras para el multiplicando', 2, 3);
+    const multiplierDigits = promptDigits('Ingrese el número de cifras para el multiplicador', 1, 3);
+
+    // Generar números aleatorios basados en las cifras especificadas
+    fillRowWithRandomNumber('row1', multiplicandDigits); // Generar para la fila 1 (multiplicando)
+    fillRowWithRandomNumber('row2', multiplierDigits); // Generar para la fila 2 (multiplicador)
+
     // Intentar habilitar el botón "Ver resultado"
     const resultButton = document.getElementById('verResultado');
     if (resultButton) {
@@ -29,12 +57,12 @@ function validateAndMultiply() {
     const row1Inputs = document.querySelectorAll('.row1');
     const row2Inputs = document.querySelectorAll('.row2');
 
-    // Convierte los inputs de las filas en un número de tres cifras
+    // Convierte los inputs de las filas en un número de cualquier cantidad de cifras
     const number1 = Array.from(row1Inputs).map(input => input.value).join('');
     const number2 = Array.from(row2Inputs).map(input => input.value).join('');
 
-    // Verifica que ambos números tengan 3 cifras y sean válidos
-    if (number1.length === 3 && number2.length === 3 && !isNaN(number1) && !isNaN(number2)) {
+    // Verifica que ambos números sean válidos y no vacíos
+    if (number1.length > 0 && number2.length > 0 && !isNaN(number1) && !isNaN(number2)) {
         const resultFromMultiplication = parseInt(number1) * parseInt(number2);
         
         // Obtener los valores del input compuesto
@@ -69,9 +97,10 @@ function validateAndMultiply() {
             reproducirAudio('wrongans'); // Reproducir el audio de respuesta incorrecta
         }
     } else {
-        document.getElementById('result').textContent = 'Completa todos los campos con números válidos de tres cifras.';
+        document.getElementById('result').textContent = 'Completa todos los campos con números válidos.';
     }
 }
+
 
 // Función para limpiar el grid de operaciones
 function clearGrid() {

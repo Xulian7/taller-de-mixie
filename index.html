@@ -3,32 +3,138 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página Principal</title>
+    <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
+    <title>Taller matemático de Mixie</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             text-align: center;
-            margin-top: 20%;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f8ff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+        h1 {
+            font-size: 3rem;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        p {
+            font-size: 1.2rem;
+            color: #34495e;
+            margin-bottom: 20px;
         }
         button {
-            padding: 10px 20px;
-            font-size: 16px;
+            width: 200px;
+            height: 60px;
+            font-size: 18px;
             margin: 10px;
             cursor: pointer;
             border: none;
-            border-radius: 5px;
+            border-radius: 10px;
             background-color: #4CAF50;
             color: white;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
         button:hover {
             background-color: #45a049;
+            transform: translateY(-5px);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+        }
+        button:focus {
+            outline: none;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+        .image-container {
+            position: relative;
+            margin-bottom: 30px;
+            width: 80%;
+            max-width: 500px;
+            height: 300px;
+            overflow: hidden;
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .image-container img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            position: absolute;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+        .image-container img.active {
+            opacity: 1;
+        }
+        footer {
+            position: absolute;
+            bottom: 10px;
+            font-size: 0.9rem;
+            color: #7f8c8d;
+        }
+
+        /* Ajustes para pantallas más pequeñas */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            p {
+                font-size: 1rem;
+            }
+            button {
+                width: 150px;
+                height: 50px;
+                font-size: 16px;
+            }
+            .image-container img {
+                width: 90%;
+            }
         }
     </style>
 </head>
 <body>
+    <div class="image-container">
+        <img src="assets/img/index.png" alt="Tablero de escuela" class="active">
+        <img src="assets/img/index2.png" alt="Tablero 2">
+        <img src="assets/img/index3.png" alt="Tablero 3">
+    </div>
     <h1>Bienvenido</h1>
     <p>Elige una opción:</p>
-    <button onclick="window.location.href='productos.html'">Ir a Multiplicacion</button>
+    <button onclick="window.location.href='productos.html'">Ir a Multiplicación</button>
     <button onclick="window.location.href='division.html'">Ir a División</button>
+    <footer>Creado con amor por Mixie Studios</footer>
+    <script>
+        const images = document.querySelectorAll('.image-container img');
+        let currentIndex = 0;
+
+        setInterval(() => {
+            images[currentIndex].classList.remove('active');
+            currentIndex = (currentIndex + 1) % images.length;
+            images[currentIndex].classList.add('active');
+        }, 3000); // Cambiar imagen cada 3 segundos
+    </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+

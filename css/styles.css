@@ -46,7 +46,6 @@ body {
 .main-container {
     display: flex;
     flex-direction: row;
-    
     justify-content: center;
     margin-top: 20px;
     gap: 20px;
@@ -55,8 +54,6 @@ body {
 /* Estilos para el grid */
 .grid-container {
     display: grid;
-    /*align-items: flex-end;*/
-    /*justify-items: end;*/
     grid-template-columns: repeat(7, auto); /* Permitir un ajuste automático del ancho */
     gap: 5px; /* Espaciado más reducido entre las celdas grandes */
     padding: 5px; /* Reducir el padding interno del contenedor */
@@ -247,7 +244,7 @@ body {
     transform: scale(1.05); /* Aumenta ligeramente el tamaño */
 }
 
- /* Estilo para centrar el GIF */
+/* Estilo para centrar el GIF */
 .gif-container {
     position: fixed;
     top: 50%;
@@ -273,7 +270,7 @@ body {
 
 /* Estilos para el footer */
 footer {
-    margin-top: 50px;  /* */
+    margin-top: 50px;
     background-color: #0a9ef3;
     color: white;
     text-align: center;
@@ -294,8 +291,74 @@ footer {
 }
 
 button:disabled {
-    background-color: gray; /* Fondo gris */
-    color: white; /* Texto blanco para contraste */
-    cursor: not-allowed; /* Cambia el cursor para indicar que no es clickeable */
-    opacity: 0.6; /* Hacerlo visualmente más tenue */
+    background-color: gray;
+    color: white;
+    cursor: not-allowed;
+    opacity: 0.6;
 }
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .main-container {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .grid-container {
+        grid-template-columns: repeat(4, auto); /* Menos columnas en pantallas pequeñas */
+        gap: 3px;
+    }
+
+    #imagen-fija {
+        width: 120px;
+    }
+
+    .limited-container {
+        padding: 10px;
+    }
+
+    .control-panel {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-container {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .grid-container {
+        grid-template-columns: repeat(2, auto); /* Solo dos columnas en pantallas más pequeñas */
+        gap: 2px;
+    }
+
+    #imagen-fija {
+        width: 100px;
+    }
+
+    .limited-container {
+        padding: 5px;
+    }
+
+    .cell {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+
+    .input-cell {
+        width: 40px;
+        height: 40px;
+        font-size: 1.5rem;
+    }
+
+    .control-panel {
+        gap: 5px;
+    }
+
+    .grid-image {
+        width: 280px;
+    }
+}
+
