@@ -305,7 +305,7 @@ button:disabled {
 /* Media Queries */
 @media (max-width: 1200px) {
     .grid-container {
-        grid-template-columns: repeat(8, auto);
+        grid-template-columns: repeat(10, auto);
     }
 
     .main-container {
@@ -329,7 +329,7 @@ button:disabled {
 
 @media (max-width: 768px) {
     .grid-container {
-        grid-template-columns: repeat(6, auto);
+        grid-template-columns: repeat(10, auto);
     }
 
     .cell, .cell-2, .cell-tiny {
@@ -357,7 +357,7 @@ button:disabled {
 
 @media (max-width: 480px) {
     .grid-container {
-        grid-template-columns: repeat(4, auto);
+        grid-template-columns: repeat(10, auto);
     }
 
     .cell, .cell-2, .cell-tiny {
