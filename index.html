@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon">
     <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css/styles2.css">
     <title>Taller matemático de Mixie</title>
     <style>
         body {
@@ -53,6 +54,7 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
         }
         .image-container {
+            padding: 10px;
             position: relative;
             margin-bottom: 30px;
             width: 80%;
@@ -77,12 +79,6 @@
         .image-container img.active {
             opacity: 1;
         }
-        footer {
-            position: absolute;
-            bottom: 10px;
-            font-size: 0.9rem;
-            color: #7f8c8d;
-        }
 
         /* Ajustes para pantallas más pequeñas */
         @media (max-width: 768px) {
@@ -104,6 +100,10 @@
     </style>
 </head>
 <body>
+    <audio id="welcomeAudio" src="assets/sounds/bienvenida.mp3"></audio>
+    <div class="composition">
+        <p class="rainbow-text">Taller Matematico de Mixie</p>
+    </div>
     <div class="image-container">
         <img src="assets/img/index.png" alt="Tablero de escuela" class="active">
         <img src="assets/img/index2.png" alt="Tablero 2">
@@ -118,11 +118,19 @@
         const images = document.querySelectorAll('.image-container img');
         let currentIndex = 0;
 
+        window.onload = () => {
+            const audio = document.getElementById('welcomeAudio');
+            audio.play().catch(error => {
+                console.log('El usuario necesita interactuar para habilitar el audio:', error);
+            });
+        };
+
         setInterval(() => {
             images[currentIndex].classList.remove('active');
             currentIndex = (currentIndex + 1) % images.length;
             images[currentIndex].classList.add('active');
         }, 3000); // Cambiar imagen cada 3 segundos
+
     </script>
 </body>
 </html>

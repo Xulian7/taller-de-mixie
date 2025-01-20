@@ -1,10 +1,8 @@
 // Función para generar un número aleatorio con un número específico de cifras y asegurarse de que la primera cifra no sea 0
 function generateRandomNumber(digits) {
     if (digits < 1) return 0; // Validación de entrada
-
     const min = Math.pow(10, digits - 1); // Mínimo valor para las cifras especificadas
     const max = Math.pow(10, digits) - 1; // Máximo valor para las cifras especificadas
-
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
@@ -12,7 +10,6 @@ function generateRandomNumber(digits) {
 function fillRowWithRandomNumber(rowClass, digits) {
     const inputs = document.querySelectorAll(`.${rowClass}`);
     const randomNumber = generateRandomNumber(digits).toString();
-
     inputs.forEach((input, index) => {
         const reversedIndex = inputs.length - 1 - index; // Índice inverso
         input.value = randomNumber[reversedIndex] || ''; // Asignar dígito en orden inverso
@@ -31,17 +28,13 @@ function promptDigits(promptText, minDigits, maxDigits) {
 // Función principal para generar ambas filas y habilitar el botón
 function generateBothRows() {
     clearGrid(); // Limpiar el grid de operaciones
-    clearAux1('rowa'); // Limpiar el grid auxiliar de la fila 1
-    clearAux1('rowb'); // Limpiar el grid auxiliar de la fila 2
-
+    
     // Solicitar al usuario las cifras para el multiplicando y el multiplicador
     const multiplicandDigits = promptDigits('Ingrese el número de cifras para el multiplicando', 2, 3);
     const multiplierDigits = promptDigits('Ingrese el número de cifras para el multiplicador', 1, 3);
-
     // Generar números aleatorios basados en las cifras especificadas
     fillRowWithRandomNumber('row1', multiplicandDigits); // Generar para la fila 1 (multiplicando)
     fillRowWithRandomNumber('row2', multiplierDigits); // Generar para la fila 2 (multiplicador)
-
     // Intentar habilitar el botón "Ver resultado"
     const resultButton = document.getElementById('verResultado');
     if (resultButton) {
@@ -50,21 +43,17 @@ function generateBothRows() {
     }
 }
 
-
 // Función para realizar la multiplicación
 function validateAndMultiply() {
     // Obtiene los números de las filas
     const row1Inputs = document.querySelectorAll('.row1');
     const row2Inputs = document.querySelectorAll('.row2');
-
     // Convierte los inputs de las filas en un número de cualquier cantidad de cifras
     const number1 = Array.from(row1Inputs).map(input => input.value).join('');
     const number2 = Array.from(row2Inputs).map(input => input.value).join('');
-
     // Verifica que ambos números sean válidos y no vacíos
     if (number1.length > 0 && number2.length > 0 && !isNaN(number1) && !isNaN(number2)) {
         const resultFromMultiplication = parseInt(number1) * parseInt(number2);
-        
         // Obtener los valores del input compuesto
         const inputs = document.querySelectorAll('.input-cell.final-result');
         let userResult = '';
@@ -78,7 +67,6 @@ function validateAndMultiply() {
         // Verifica si la multiplicación calculada y el resultado ingresado son iguales
         const resultElement = document.getElementById('result');
         const resultButton = document.getElementById('verResultado'); // Asegúrate de que tu botón tenga este ID
-        
         if (userResult === resultFromMultiplication.toString()) {
             resultElement.textContent = `¡Correcto! El resultado de la multiplicación es ${resultFromMultiplication}`;
             incrementScore(); // Incrementar el score
@@ -101,7 +89,6 @@ function validateAndMultiply() {
     }
 }
 
-
 // Función para limpiar el grid de operaciones
 function clearGrid() {
     const inputs = document.querySelectorAll('.input-cell');
@@ -109,7 +96,8 @@ function clearGrid() {
         input.value = ''; // Limpiar el contenido de cada input
     });
     document.getElementById('result').textContent = '';
-    
+    clearAux1('rowa'); // Limpiar el grid auxiliar de la fila 1
+    clearAux1('rowb'); // Limpiar el grid auxiliar de la fila 2
 }
 
 // Función para limpiar el grid auxiliar
