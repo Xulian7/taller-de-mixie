@@ -1,4 +1,3 @@
-// Función para llenar una fila con números aleatorios entre 0 y 9, pero sin 0 ni 1 para 'fill.mix'
 function fillRow(rowClass, limit = null) {
     const inputs = document.querySelectorAll(`.${rowClass}`);
     inputs.forEach((input, index) => {
@@ -17,10 +16,38 @@ function fillRow(rowClass, limit = null) {
     });
 }
 
+// Validar divisibilidad y sombrear inputs según el resultado
+function validateDivisibility() {
+    const dividendInputs = document.querySelectorAll('.fill.mixd');
+    const divisorInputs = document.querySelectorAll('.fill.mix');
+    
+    // Obtener el divisor completo
+    const divisor = parseInt(Array.from(divisorInputs).map(input => input.value).join(''), 10);
+    if (isNaN(divisor) || divisor === 0) {
+        alert('El divisor no puede ser 0 o estar vacío.');
+        return;
+    }
+    
+    // Obtener las primeras cifras del dividendo
+    const firstNumber = parseInt(dividendInputs[0]?.value || 0, 10);
+    const secondNumber = parseInt((dividendInputs[1]?.value || 0) + '', 10);
+    const combinedNumber = firstNumber * 10 + secondNumber;
+
+    // Sombrear según divisibilidad
+    dividendInputs.forEach(input => input.classList.remove('highlight'));
+    if (firstNumber % divisor === 0) {
+        dividendInputs[0].classList.add('highlight');
+    } else if (combinedNumber % divisor === 0) {
+        dividendInputs[0].classList.add('highlight');
+        if (dividendInputs[1]) {
+            dividendInputs[1].classList.add('highlight');
+        }
+    }
+}
+
 // Función para generar ambas filas y habilitar el botón "Ver resultado"
 function generateBothRows() {
-    // Solicitar al usuario un número entre 2 y 4
-    let numElements = parseInt(prompt('Por favor, Dime el numero de cifras del dividendo:'));
+    let numElements = parseInt(prompt('Por favor, Dime el número de cifras del dividendo:'));
     
     // Validar el input
     while (isNaN(numElements) || numElements < 2 || numElements > 4) {
@@ -37,10 +64,20 @@ function generateBothRows() {
         resultButton.disabled = false; // Habilitar el botón
         resultButton.textContent = 'Ver resultado'; // Restaurar el texto
     }
+
+    // ** Llamar a validateDivisibility inmediatamente después de llenar los inputs **
+    validateDivisibility();
 }
+
+
+
 
 // Función para limpiar el grid
 function clearGrid() {
+    
+
+
+
     const inputs = document.querySelectorAll('.input-cell'); // Seleccionar todos los inputs con la clase 'input-cell'
     inputs.forEach(input => {
         input.value = ''; // Limpiar el valor del input
@@ -57,8 +94,12 @@ function clearGrid() {
         cell.textContent = ''; // Limpiar el contenido de texto de las celdas
     });
 
+    
     document.getElementById('result').textContent = ''; // Limpiar el texto del elemento con id 'result'
 }
+
+
+
 
 let score = 0;
 let heladoCount = 0;

@@ -167,6 +167,11 @@ body {
     margin: 0;
 }
 
+.highlight {
+    background-color: lightgreen;
+}
+
+
 .input-cell.fill.mox {
     border-bottom: 3px solid #000;
     border-radius: 0px;

@@ -65,6 +65,55 @@ body {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
+.thumbnail-container {
+    position: relative;
+    display: inline-block;
+    width: 46px;
+    height: 46px;
+}
+
+.thumbnail {
+    width: 46px;
+    height: auto;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.5s;
+}
+
+.thumbnail:hover {
+    transform: scale(1.1);
+}
+
+.zoom-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    opacity: 0;
+    border: 3px solid black; /* Borde negro */
+    border-radius: 10px; /* Bordes redondeados */
+    background-color: #fff; /* Fondo blanco para resaltar */
+    transition: width 0.3s ease, height 0.3s ease, opacity 0.3s ease;
+    z-index: 100;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Sombra para dar profundidad */
+}
+
+.thumbnail-container:hover .zoom-container {
+    width: 15vw; /* 15% del ancho de la pantalla */
+    height: auto;
+    opacity: 1;
+}
+
+.zoom-container img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px; /* Borde redondeado también en la imagen */
+}
+
 /* Contenedor del score */
 #score-container {
     position: static; /* Permitir que siga el flujo del documento */
@@ -219,30 +268,6 @@ body {
     background: linear-gradient(45deg, #f44336, #e57373); /* Rojo para resultado incorrecto */
 }
 
-/* Contenedor para la imagen */
-.image-panel {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #fff;
-    padding: 10px;
-    border: 2px solid #000;
-    border-radius: 8px; /* Bordes redondeados */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para darle profundidad */
-}
-
-.grid-image {
-    position: relative; /* Necesario para posicionar el aro */
-    width: 350px; /* Ajusta según tu diseño */
-    height: auto;
-    border-radius: 8px; /* Opcional, si quieres bordes redondeados */
-    transition: transform 0.3s ease-in-out;
-}
-
-/* Efecto al pasar el mouse */
-.grid-image:hover {
-    transform: scale(1.05); /* Aumenta ligeramente el tamaño */
-}
 
 /* Estilo para centrar el GIF */
 .gif-container {
