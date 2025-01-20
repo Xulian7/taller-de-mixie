@@ -69,15 +69,8 @@ function generateBothRows() {
     validateDivisibility();
 }
 
-
-
-
 // Función para limpiar el grid
 function clearGrid() {
-    
-
-
-
     const inputs = document.querySelectorAll('.input-cell'); // Seleccionar todos los inputs con la clase 'input-cell'
     inputs.forEach(input => {
         input.value = ''; // Limpiar el valor del input
@@ -229,6 +222,14 @@ function verificarDatos() {
 document.querySelectorAll('.input-cell').forEach(input => {
     input.addEventListener('input', verificarDatos);
 });
+
+const imagen1 = document.getElementById('imagen1');
+        const sonido = document.getElementById('sonido');
+
+        imagen1.addEventListener('mouseenter', () => {
+            sonido.currentTime = 0; // Reinicia el sonido
+            sonido.play(); // Reproduce el sonido
+        });
 
 
 

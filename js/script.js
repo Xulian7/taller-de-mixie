@@ -272,3 +272,10 @@ partialResults.forEach(input => {
     });
 });
 
+const imagen1 = document.getElementById('imagen1');
+        const sonido = document.getElementById('sonido');
+
+        imagen1.addEventListener('mouseenter', () => {
+            sonido.currentTime = 0; // Reinicia el sonido
+            sonido.play(); // Reproduce el sonido
+        });

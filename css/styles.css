@@ -387,3 +387,7 @@ button:disabled {
     }
 }
 
+.special-paragraph {
+    color: white; /* Cambia este color al que prefieras */
+}
+

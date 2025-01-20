@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon">
     <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="css/styles2.css">
+    <link rel="stylesheet" href="css/styles.css">
     <title>Taller matemático de Mixie</title>
     <style>
         body {
@@ -113,17 +113,16 @@
     <p>Elige una opción:</p>
     <button onclick="window.location.href='productos.html'">Ir a Multiplicación</button>
     <button onclick="window.location.href='division.html'">Ir a División</button>
-    <footer>Creado con amor por Mixie Studios</footer>
+    
+    <footer>
+        <div class="footer-content">
+            <p class="special-paragraph">© Taller matemático de Mixie ❤️ Todos los derechos reservados.</p>
+        </div>
+    </footer>
+    
     <script>
         const images = document.querySelectorAll('.image-container img');
         let currentIndex = 0;
-
-        window.onload = () => {
-            const audio = document.getElementById('welcomeAudio');
-            audio.play().catch(error => {
-                console.log('El usuario necesita interactuar para habilitar el audio:', error);
-            });
-        };
 
         setInterval(() => {
             images[currentIndex].classList.remove('active');
