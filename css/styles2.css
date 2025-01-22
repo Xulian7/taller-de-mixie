@@ -286,6 +286,7 @@ body {
 }
 
 .thumbnail-container:hover .zoom-container {
+    width: 20vw; /* 20% del ancho de la pantalla */
     width: 20vw; /* 15% del ancho de la pantalla */
     height: auto;
     opacity: 1;
