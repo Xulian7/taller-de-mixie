@@ -6,49 +6,21 @@ function fillRow(rowClass, limit = null) {
             return;
         }
         let randomValue = Math.floor(Math.random() * 10); // Número aleatorio entre 0 y 9
-        
         // Si la clase es 'fill.mix', asegurarse de que no sea ni 0 ni 1
         if (rowClass === 'fill.mix' && (randomValue === 0 || randomValue === 1)) {
             randomValue = Math.floor(Math.random() * 8) + 2; // Genera un número entre 2 y 9
         }
-        
+        // Si la clase es 'fill.mixd', asegurarse de que el primer número no sea 0
+        if (rowClass === 'fill.mixd' && index === 0 && randomValue === 0) {
+            randomValue = Math.floor(Math.random() * 9) + 1; // Genera un número entre 1 y 9
+        }
         input.value = randomValue;
     });
-}
-
-// Validar divisibilidad y sombrear inputs según el resultado
-function validateDivisibility() {
-    const dividendInputs = document.querySelectorAll('.fill.mixd');
-    const divisorInputs = document.querySelectorAll('.fill.mix');
-    
-    // Obtener el divisor completo
-    const divisor = parseInt(Array.from(divisorInputs).map(input => input.value).join(''), 10);
-    if (isNaN(divisor) || divisor === 0) {
-        alert('El divisor no puede ser 0 o estar vacío.');
-        return;
-    }
-    
-    // Obtener las primeras cifras del dividendo
-    const firstNumber = parseInt(dividendInputs[0]?.value || 0, 10);
-    const secondNumber = parseInt((dividendInputs[1]?.value || 0) + '', 10);
-    const combinedNumber = firstNumber * 10 + secondNumber;
-
-    // Sombrear según divisibilidad
-    dividendInputs.forEach(input => input.classList.remove('highlight'));
-    if (firstNumber % divisor === 0) {
-        dividendInputs[0].classList.add('highlight');
-    } else if (combinedNumber % divisor === 0) {
-        dividendInputs[0].classList.add('highlight');
-        if (dividendInputs[1]) {
-            dividendInputs[1].classList.add('highlight');
-        }
-    }
 }
 
 // Función para generar ambas filas y habilitar el botón "Ver resultado"
 function generateBothRows() {
     let numElements = parseInt(prompt('Por favor, Dime el número de cifras del dividendo:'));
-    
     // Validar el input
     while (isNaN(numElements) || numElements < 2 || numElements > 4) {
         numElements = parseInt(prompt('Número inválido. Por favor, ingresa un número entre 2 y 4:'));
@@ -57,7 +29,6 @@ function generateBothRows() {
     clearGrid(); // Limpiar el grid de operaciones
     fillRow('fill.mixd', numElements); // Genera números aleatorios para el dividendo, limitado al número ingresado
     fillRow('fill.mix'); // Genera números aleatorios para el divisor (todos los inputs)
-
     // Intentar habilitar el botón "Ver resultado"
     const resultButton = document.getElementById('verResultado');
     if (resultButton) {
@@ -69,6 +40,7 @@ function generateBothRows() {
     validateDivisibility();
 }
 
+
 // Función para limpiar el grid
 function clearGrid() {
     const inputs = document.querySelectorAll('.input-cell'); // Seleccionar todos los inputs con la clase 'input-cell'
@@ -79,6 +51,9 @@ function clearGrid() {
         if (input.classList.contains('partial')) {
             input.classList.remove('has-data'); // Eliminar la clase 'has-data' para los inputs 'partial'
         }
+
+        // Eliminar la clase 'highlight' de los inputs
+        input.classList.remove('highlight');
     });
 
     // Seleccionar todos los elementos con las clases 'uno', 'dos', 'tres', y 'quatro'
@@ -87,10 +62,14 @@ function clearGrid() {
         cell.textContent = ''; // Limpiar el contenido de texto de las celdas
     });
 
-    
+    // Limpiar la clase 'highlight' de las flechas
+    const arrows = document.querySelectorAll('.cell-arrow');
+    arrows.forEach(arrow => {
+        arrow.style.opacity = '0'; // Ocultar las flechas
+    });
+
     document.getElementById('result').textContent = ''; // Limpiar el texto del elemento con id 'result'
 }
-
 
 
 

@@ -32,7 +32,7 @@
         <div id="score-container">
             <img src="assets/img/heart.png" alt="Heart" class="score-heart">
             <label id="score-label1" class="score-label">0</label>
-            <img src="assets/img/Ice_Cream.png" alt="Ice_cream" class="score-heart">
+            <img src="assets/img/Pizza.png" alt="Pizza" class="score-heart">
             <label id="score-label2" class="score-label">0</label>
         </div>
 
@@ -40,13 +40,23 @@
         <div class="main-container">
             <!-- Grid de operaciones -->
             <div class="grid-container">
-        
+                <!-- line de arrows -->
+                <div class="cell-arrow"></div>
+                <div class="cell-arrow"></div>
+                <div class="cell-arrow A1"><img src="assets/img/fall.gif" alt="Arrow"></div>
+                <div class="cell-arrow B2"><img src="assets/img/fall.gif" alt="Arrow"></div>
+                <div class="cell-arrow C3"><img src="assets/img/fall.gif" alt="Arrow"></div>
+                <div class="cell-arrow"></div>
+                <div class="cell-arrow"></div>
+                <div class="cell-arrow"></div>
+                <div class="cell-arrow"></div>
+                <div class="cell-arrow"></div>
                 <!-- Fila dividendo / divisor-->
                 <div class="cell"></div>
                 <input type="text" class="input-cell fill mixd" maxlength="1" inputmode="numeric" readonly>
-                <input type="text" class="input-cell fill mixd" maxlength="1" inputmode="numeric" readonly>
-                <input type="text" class="input-cell fill mixd" maxlength="1" inputmode="numeric" readonly>
-                <input type="text" class="input-cell fill mixd" maxlength="1" inputmode="numeric" readonly>
+                <input type="text" class="input-cell fill mixd A1" maxlength="1" inputmode="numeric" readonly>
+                <input type="text" class="input-cell fill mixd B2" maxlength="1" inputmode="numeric" readonly>
+                <input type="text" class="input-cell fill mixd C3" maxlength="1" inputmode="numeric" readonly>
                 <div class="cell"></div>
                 <input type="text" class="input-cell fill mix" maxlength="1" inputmode="numeric" readonly>
                 <input type="text" class="input-cell fill mox" maxlength="1" inputmode="numeric" readonly>
@@ -65,10 +75,10 @@
                 <input type="text" class="input-cell res row4" maxlength="1" inputmode="numeric">
                 <!-- residuo1-->
                 <div class="cell"></div>
-                <input type="text" class="input-cell resid" maxlength="1" inputmode="numeric">
-                <input type="text" class="input-cell resid" maxlength="1" inputmode="numeric">
-                <input type="text" class="input-cell resid" maxlength="1" inputmode="numeric">
-                <input type="text" class="input-cell resid" maxlength="1" inputmode="numeric">
+                <input type="text" class="input-cell resid one" maxlength="1" inputmode="numeric">
+                <input type="text" class="input-cell resid one" id="A1" maxlength="1" inputmode="numeric">
+                <input type="text" class="input-cell resid one" id="B2" maxlength="1" inputmode="numeric">
+                <input type="text" class="input-cell resid one" id="C3" maxlength="1" inputmode="numeric">
                 <div class="cell"></div>
                 <div class="cell"></div>
                 <div class="cell"></div>
@@ -87,10 +97,10 @@
                 <div class="cell"></div>
                 <!-- residuo2-->
                 <div class="cell"></div>
-                <input type="text" class="input-cell resid" maxlength="1" inputmode="numeric">
-                <input type="text" class="input-cell resid" maxlength="1" inputmode="numeric">
-                <input type="text" class="input-cell resid" maxlength="1" inputmode="numeric">
-                <input type="text" class="input-cell resid" maxlength="1" inputmode="numeric">
+                <input type="text" class="input-cell resid two" maxlength="1" inputmode="numeric">
+                <input type="text" class="input-cell resid two" id="A1" maxlength="1" inputmode="numeric">
+                <input type="text" class="input-cell resid two" id="B2" maxlength="1" inputmode="numeric">
+                <input type="text" class="input-cell resid two" id="C2" maxlength="1" inputmode="numeric">
                 <div class="cell"></div>
                 <div class="cell"></div>
                 <div class="cell"></div>
@@ -109,10 +119,10 @@
                 <div class="cell"></div>
                 <!-- residuo3-->
                 <div class="cell"></div>
-                <input type="text" class="input-cell resid" maxlength="1" inputmode="numeric">
-                <input type="text" class="input-cell resid" maxlength="1" inputmode="numeric">
-                <input type="text" class="input-cell resid" maxlength="1" inputmode="numeric">
-                <input type="text" class="input-cell resid" maxlength="1" inputmode="numeric">
+                <input type="text" class="input-cell resid three" maxlength="1" inputmode="numeric">
+                <input type="text" class="input-cell resid three" id="A1" maxlength="1" inputmode="numeric">
+                <input type="text" class="input-cell resid three" id="B2" maxlength="1" inputmode="numeric">
+                <input type="text" class="input-cell resid three" id="C3" maxlength="1" inputmode="numeric">
                 <div class="cell"></div>
                 <div class="cell"></div>
                 <div class="cell"></div>
@@ -131,10 +141,10 @@
                 <div class="cell"></div>
                 <!-- residuo4-->
                 <div class="cell"></div>
-                <input type="text" class="input-cell resid" maxlength="1" inputmode="numeric">
-                <input type="text" class="input-cell resid" maxlength="1" inputmode="numeric">
-                <input type="text" class="input-cell resid" maxlength="1" inputmode="numeric">
-                <input type="text" class="input-cell resid" maxlength="1" inputmode="numeric">
+                <input type="text" class="input-cell resid four" maxlength="1" inputmode="numeric">
+                <input type="text" class="input-cell resid four" id="A1" maxlength="1" inputmode="numeric">
+                <input type="text" class="input-cell resid four" id="B2" maxlength="1" inputmode="numeric">
+                <input type="text" class="input-cell resid four" id="C3" maxlength="1" inputmode="numeric">
                 <div class="cell"></div>
                 <div class="cell"></div>
                 <div class="cell"></div>
@@ -176,6 +186,7 @@
         </div>
     </footer>
     
+    <script src="js/logic.js"></script>
     <script src="js/scripts2.js"></script>
 </body>
 </html>

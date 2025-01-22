@@ -51,8 +51,9 @@ body {
 .grid-container {
     display: grid;
     grid-template-columns: repeat(10, auto);
-    gap: 3px;
-    padding: 5px;
+    gap: 1.5px;
+    row-gap: 0.5px; /* Espacio vertical específico */
+    padding: 3px;
     max-width: fit-content;
     background-color: #fff;
     border: 2px solid #000;
@@ -95,6 +96,22 @@ body {
     font-size: 1.2rem;
     font-weight: bold;
 }
+
+
+.cell-arrow {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    background-size: cover;
+    background-position: center;
+    opacity: 0; /* Estado por defecto */
+    transition: opacity 0.3s ease; /* Transición suave cuando cambie la opacidad */
+}
+
 
 .cell-2 {
     width: 15px;
@@ -151,10 +168,6 @@ body {
     margin: 0;
 }
 
-.arrow {
-    display: none;
-    position: absolute;
-}
 
 .input-cell.fill {
     border: none;
@@ -273,7 +286,7 @@ body {
 }
 
 .thumbnail-container:hover .zoom-container {
-    width: 15vw; /* 15% del ancho de la pantalla */
+    width: 20vw; /* 15% del ancho de la pantalla */
     height: auto;
     opacity: 1;
 }
