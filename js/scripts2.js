@@ -20,23 +20,38 @@ function fillRow(rowClass, limit = null) {
 
 // Función para generar ambas filas y habilitar el botón "Ver resultado"
 function generateBothRows() {
-    let numElements = parseInt(prompt('Por favor, Dime el número de cifras del dividendo:'));
-    // Validar el input
-    while (isNaN(numElements) || numElements < 2 || numElements > 4) {
-        numElements = parseInt(prompt('Número inválido. Por favor, ingresa un número entre 2 y 4:'));
+    // Pedir número de cifras del dividendo
+    let dividendDigits = parseInt(prompt('Por favor, dime el número de cifras del dividendo (entre 2 y 4):'));
+    while (isNaN(dividendDigits) || dividendDigits < 2 || dividendDigits > 4) {
+        dividendDigits = parseInt(prompt('Número inválido. Por favor, ingresa un número entre 2 y 4:'));
+    }
+
+    // Pedir número de cifras del divisor
+    let divisorDigits = parseInt(prompt('Por favor, dime el número de cifras del divisor (entre 1 y 3):'));
+    while (isNaN(divisorDigits) || divisorDigits < 1 || divisorDigits > 3) {
+        divisorDigits = parseInt(prompt('Número inválido. Por favor, ingresa un número entre 1 y 3:'));
     }
 
     clearGrid(); // Limpiar el grid de operaciones
-    fillRow('fill.mixd', numElements); // Genera números aleatorios para el dividendo, limitado al número ingresado
-    fillRow('fill.mix'); // Genera números aleatorios para el divisor (todos los inputs)
-    // Intentar habilitar el botón "Ver resultado"
+
+    // Generar números aleatorios para el dividendo
+    fillRow('fill.mixd', dividendDigits);
+
+    // Generar números aleatorios para el divisor
+    fillRow('fill.mix', 1); // Generar el primer número del divisor (input de clase 'fill.mix')
+    if (divisorDigits > 1) {
+        // Generar los números adicionales para el divisor en los inputs de clase 'fill.mox'
+        fillRow('fill.mox', divisorDigits - 1);
+    }
+
+    // Habilitar el botón "Ver resultado"
     const resultButton = document.getElementById('verResultado');
     if (resultButton) {
         resultButton.disabled = false; // Habilitar el botón
         resultButton.textContent = 'Ver resultado'; // Restaurar el texto
     }
 
-    // ** Llamar a validateDivisibility inmediatamente después de llenar los inputs **
+    // Validar la divisibilidad (si esta función está definida)
     validateDivisibility();
 }
 
@@ -130,42 +145,52 @@ inputs.forEach(input => {
 
 
 function calculateResult() {
-    const row1Inputs = document.querySelectorAll('.input-cell.fill.mixd');
-    const row2Inputs = document.querySelectorAll('.input-cell.fill.mix');
+    // Obtener los valores de los inputs para el dividendo (mixd) y divisor (mix y mox)
+    const row1Inputs = document.querySelectorAll('.input-cell.fill.mixd'); // Dividendo
+    const row2MixInput = document.querySelector('.input-cell.fill.mix'); // Primer dígito del divisor
+    const row2MoxInputs = document.querySelectorAll('.input-cell.fill.mox'); // Otros dígitos del divisor
 
-    // Obtener los valores del input compuesto
-    const inputs = document.querySelectorAll('.input-cell.res');
+    // Construir el dividendo como un número
+    const number1 = parseInt(Array.from(row1Inputs).map(input => input.value).join(''), 10);
+
+    // Construir el divisor como un número
+    let divisorArray = [row2MixInput.value]; // Comienza con el valor de fill.mix
+    row2MoxInputs.forEach(input => {
+        if (input.value.trim() !== '') {
+            divisorArray.push(input.value.trim());
+        }
+    });
+    const number2 = parseInt(divisorArray.join(''), 10);
+
+    // Obtener el resultado ingresado por el usuario
+    const userInputs = document.querySelectorAll('.input-cell.res');
     let userResult = '';
-    inputs.forEach(input => {
+    userInputs.forEach(input => {
         const value = input.value.trim();
         if (value !== '') {
             userResult += value;
         }
     });
 
-    // Convierte los inputs de las filas en un número de tres cifras
-    const number1 = parseInt(Array.from(row1Inputs).map(input => input.value).join(''), 10);
-    const number2 = parseInt(Array.from(row2Inputs).map(input => input.value).join(''), 10);
+    // Convertir el resultado del usuario a un número
+    const userResultNumber = parseInt(userResult, 10);
 
-    // Calcula el cociente entero y el residuo
+    // Calcular el cociente y el residuo
     const quotient = Math.floor(number1 / number2);
     const remainder = number1 % number2;
 
-    // Convertir userResult a número para comparación
-    const userResultNumber = parseInt(userResult, 10);
-
-    // Elementos HTML
+    // Elementos HTML para mostrar resultados
     const resultElement = document.getElementById('result');
     const resultButton = document.getElementById('verResultado');
     const gifContainer = document.getElementById('gifContainer');
 
-    // Verifica si el resultado ingresado es correcto
+    // Validar si el resultado ingresado es correcto
     if (userResultNumber === quotient) {
-        resultElement.textContent = `¡Correcto! El resultado de la división es ${quotient}`;
-        incrementScore(); // Incrementar el score
+        resultElement.textContent = `¡Correcto! El resultado de la división es ${quotient} y el residuo es ${remainder}.`;
+        incrementScore(); // Incrementar el puntaje
         resultButton.disabled = true; // Desactivar el botón
-        resultButton.textContent = 'Resultado validado'; // Cambiar texto del botón
-        reproducirAudio('rightans'); // Reproducir audio correcto
+        resultButton.textContent = 'Resultado validado'; // Cambiar el texto del botón
+        reproducirAudio('rightans'); // Reproducir audio de respuesta correcta
 
         // Mostrar GIF por 4 segundos
         gifContainer.style.display = 'block';
@@ -173,8 +198,8 @@ function calculateResult() {
             gifContainer.style.display = 'none';
         }, 4000);
     } else {
-        resultElement.textContent = `No es correcto, revisa. Resultado esperado: ${quotient}`;
-        reproducirAudio('wrongans'); // Reproducir audio incorrecto
+        resultElement.textContent = `No es correcto, revisa. Resultado esperado: ${quotient}, Residuo esperado: ${remainder}.`;
+        reproducirAudio('wrongans'); // Reproducir audio de respuesta incorrecta
     }
 }
 

@@ -1,13 +1,16 @@
 function validateDivisibility() {
-    const dividendInputs = document.querySelectorAll('.fill.mixd');
-    const divisorInputs = document.querySelectorAll('.fill.mix');
-    
-    // Obtener el divisor completo
-    const divisor = parseInt(Array.from(divisorInputs).map(input => input.value).join(''), 10);
-    if (isNaN(divisor) || divisor === 0) {
-        alert('El divisor no puede ser 0 o estar vacío.');
-        return;
-    }
+   
+    const dividendInputs = document.querySelectorAll('.fill.mixd'); // Dividendo
+    const divisorMixInput = document.querySelector('.fill.mix'); // Primer dígito del divisor
+    const divisorMoxInputs = document.querySelectorAll('.fill.mox'); // Dígitos adicionales del divisor
+
+    // Construir el divisor completo
+    let divisorArray = [divisorMixInput.value]; // Comenzamos con el valor de fill.mix
+    divisorMoxInputs.forEach(input => {
+        divisorArray.push(input.value.trim()); // Añadir valores directamente
+    });
+
+    const divisor = parseInt(divisorArray.join(''), 10); // Unir y convertir a número
 
     // Restablecer cualquier resaltado previo
     dividendInputs.forEach(input => input.classList.remove('highlight'));
