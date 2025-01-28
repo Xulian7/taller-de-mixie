@@ -1,5 +1,5 @@
 function validateDivisibility() {
-   
+    
     const dividendInputs = document.querySelectorAll('.fill.mixd'); // Dividendo
     const divisorMixInput = document.querySelector('.fill.mix'); // Primer dígito del divisor
     const divisorMoxInputs = document.querySelectorAll('.fill.mox'); // Dígitos adicionales del divisor
@@ -89,7 +89,5 @@ inputCells.forEach(input => {
     const observer = new MutationObserver(() => checkAndUpdateArrow(input));  // Llamar la función cuando hay cambios
     observer.observe(input, { attributes: true, attributeFilter: ['class'] });  // Observamos los cambios en la clase
 });
-
-
 
 

@@ -52,13 +52,14 @@ body {
     display: grid;
     grid-template-columns: repeat(10, auto);
     gap: 1.5px;
-    row-gap: 0.5px; /* Espacio vertical específico */
-    padding: 3px;
+    row-gap: 0px; /* Espacio vertical específico */
+    padding: 2px;
     max-width: fit-content;
     background-color: #fff;
     border: 2px solid #000;
     border-radius: 8px;
-    text-align: right;
+    text-align: center;
+    align-items: center;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
@@ -88,8 +89,8 @@ body {
 }
 
 .cell {
-    width: 50px;
-    height: 50px;
+    width: 48px;
+    height: 48px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -99,8 +100,8 @@ body {
 
 
 .cell-arrow {
-    width: 36px;
-    height: 36px;
+    width: 32px;
+    height: 32px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -134,35 +135,13 @@ body {
     border-radius: 3px;
 }
 
-.close-button {
-    width: 14px;
-    height: 14px;
-    font-size: 8px;
-    background-color: rgb(252, 148, 165);
-    color: white;
-    border: none;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.close-button:hover {
-    background-color: rgb(231, 0, 0);
-}
-
-.close-button:active {
-    background-color: darkorange;
-}
 
 .input-cell {
-    width: 32px;
-    height: 32px;
+    width: 36px;
+    height: 36px;
     font-size: 1.5rem;
     text-align: center;
-    border: 0.1px dashed #000;
+    border: 0.1px dotted #000;
     outline: none;
     transition: border-color 0.3s ease, background-color 0.3s ease;
     margin: 0;
@@ -177,7 +156,7 @@ body {
     border-bottom: 3px solid #000;
     border-left: 3px solid #000;
     border-radius: 0px;
-    margin: 0;
+    /*margin: 0;*/
 }
 
 .highlight {
@@ -188,7 +167,7 @@ body {
 .input-cell.fill.mox {
     border-bottom: 3px solid #000;
     border-radius: 0px;
-    margin: 0;
+    /*margin: 0;*/
 }
 
 .input-cell.partial.has-data {

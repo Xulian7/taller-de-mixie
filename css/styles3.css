@@ -1,0 +1,149 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    background-color: #f4f4f9;
+}
+
+h1 {
+    margin: 20px 0;
+}
+
+#grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+    max-width: 600px;
+    margin: 20px auto;
+}
+
+.card {
+    width: 100px;
+    height: 100px;
+    background-color: #4caf50;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.card .front {
+    display: none;
+}
+
+.card.revealed .front {
+    display: block;
+}
+
+.card.revealed .back {
+    display: none;
+}
+
+.card.matched {
+    background-color: #ffffff;
+    cursor: default;
+}
+
+
+.control-panel {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.control-panel button {
+    padding: 12px 30px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+
+#score {
+    margin-top: 20px;
+}
+
+.rainbow-text {
+    font-size: 4rem;
+    background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-align: center;
+    margin: 0;
+    padding: 0px;
+    text-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilos para el footer */
+footer {
+    margin-top: 50px;
+    background-color: #0a9ef3;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+.footer-content a {
+    color: #ffcc00;
+    text-decoration: none;
+    margin: 0 5px;
+}
+
+.footer-content a:hover {
+    text-decoration: underline;
+}
+
+#imagen-fija {
+    position: relative;
+    top: 0px;
+    left: 0px;
+    width: 150px;
+    height: auto;
+}
+
+.composition {
+    display: flex;
+    margin-top: 5px;
+    padding: 0;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+
+
+/* Media query for tablets (720p) */
+@media (max-width: 720px) {
+    #grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 8px;
+    }
+
+    .card {
+        width: 65px;
+        height: 65px;
+    }
+}

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>Memoria con Mixie</title>
+    <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css/styles3.css">
+</head>
+<body>
+    <div class="composition">
+        <img src="assets/img/tigger.png" id="imagen-fija" alt="Imagen fija">
+        <p class="rainbow-text">Memoria con Mixie</p>
+    </div>
+    
+    <div id="grid"></div>
+    <div id="score">
+        <p>Pares encontrados: <span id="matches">0</span></p>
+    </div>
+
+    <div class="control-panel">
+        <button id="restart">Reiniciar juego</button>
+        <button onclick="window.location.href='index.html'">Ir a inicio</button>
+    </div>
+
+    <script>
+        const grid = document.getElementById('grid');
+        const matchesDisplay = document.getElementById('matches');
+        const totalPairs = 10;
+        let images = [];
+
+        // Objeto de audio para el clic
+        const clickSound = new Audio('/assets/sounds/card.mp3');
+        const winSound = new Audio('assets/sounds/right.mp3');   // Sonido al encontrar un par
+
+        // Función para generar los nombres de las imágenes
+        function generateImages() {
+            images = [];
+            for (let i = 1; i <= totalPairs; i++) {
+                images.push(`assets/img/${i}.jpg`);
+                images.push(`assets/img/${i}.jpg`);
+            }
+            shuffle(images);
+        }
+
+        // Función para mezclar las imágenes
+        function shuffle(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+
+        let revealedCards = [];
+        let matchedPairs = 0;
+
+        // Función para crear las tarjetas
+        function createCards() {
+            grid.innerHTML = ''; // Limpiar el grid antes de crear nuevas cartas
+            images.forEach(src => {
+                const card = document.createElement('div');
+                card.classList.add('card');
+
+                const back = document.createElement('img');
+                back.src = 'assets/img/default.jpg';
+                back.classList.add('back');
+
+                const front = document.createElement('img');
+                front.src = src;
+                front.classList.add('front');
+
+                card.appendChild(back);
+                card.appendChild(front);
+
+                card.addEventListener('click', () => {
+                    if (card.classList.contains('revealed') || card.classList.contains('matched')) {
+                        return;
+                    }
+
+                    // Reproducir sonido al hacer clic
+                    clickSound.play();
+
+                    card.classList.add('revealed');
+                    revealedCards.push(card);
+
+                    if (revealedCards.length === 2) {
+                        checkMatch();
+                    }
+                });
+
+                grid.appendChild(card);
+            });
+        }
+
+        // Verificar si hay coincidencia
+        function checkMatch() {
+            const [card1, card2] = revealedCards;
+            const img1 = card1.querySelector('.front').src;
+            const img2 = card2.querySelector('.front').src;
+
+            if (img1 === img2) {
+                winSound.play();
+                card1.classList.add('matched');
+                card2.classList.add('matched');
+                matchedPairs++;
+                matchesDisplay.textContent = matchedPairs;
+            } else {
+                setTimeout(() => {
+                    card1.classList.remove('revealed');
+                    card2.classList.remove('revealed');
+                }, 1000);
+            }
+
+            revealedCards = [];
+
+            if (matchedPairs === totalPairs) {
+                setTimeout(() => {
+                    alert('¡Felicidades! Has encontrado todos los pares.');
+                }, 500);
+            }
+        }
+
+        // Funcionalidad para reiniciar el juego
+        document.getElementById('restart').addEventListener('click', () => {
+            matchedPairs = 0;
+            matchesDisplay.textContent = matchedPairs;
+            revealedCards = [];
+            generateImages();
+            createCards();
+        });
+
+        // Inicializar el juego
+        generateImages();
+        createCards();
+    </script>
+
+
+    <footer>
+        <div class="footer-content">
+            <p class="special-paragraph">© Taller matemático de Mixie ❤️ Todos los derechos reservados.</p>
+        </div>
+    </footer>
+</body>
+</html>
+
+
