@@ -30,6 +30,8 @@ h1 {
     cursor: pointer;
     position: relative;
     overflow: hidden;
+    perspective: 1000px; /* Habilitar perspectiva para efecto 3D */
+    animation: shuffle 0.5s ease-in-out; /* Animación de aparición */
 }
 
 .card img {
@@ -37,25 +39,55 @@ h1 {
     height: 100%;
     object-fit: cover;
     border-radius: 5px;
+    backface-visibility: hidden; /* Ocultar lado posterior */
+    transition: transform 0.6s; /* Suavidad en el giro */
+}
+
+.card .back {
+    transform: rotateY(0deg);
 }
 
 .card .front {
-    display: none;
-}
-
-.card.revealed .front {
-    display: block;
+    transform: rotateY(180deg);
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
 .card.revealed .back {
-    display: none;
+    transform: rotateY(-180deg);
+}
+
+.card.revealed .front {
+    transform: rotateY(0deg);
 }
 
 .card.matched {
     background-color: #ffffff;
     cursor: default;
+    animation: none; /* Detener animación para cartas emparejadas */
 }
 
+/* Animaciones */
+@keyframes flip {
+    from {
+        transform: rotateY(0deg);
+    }
+    to {
+        transform: rotateY(180deg);
+    }
+}
+
+@keyframes shuffle {
+    0% {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
 
 .control-panel {
     margin-top: 20px;
@@ -76,7 +108,6 @@ h1 {
     transition: all 0.3s ease;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
-
 
 #score {
     margin-top: 20px;
@@ -133,7 +164,18 @@ footer {
     gap: 5px;
 }
 
-
+#result-container {
+    margin-top: 20px;
+    padding: 15px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #fff;
+    background: linear-gradient(45deg, #ff6f61, #ff9a8b);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    transition: all 0.3s ease;
+}
 
 /* Media query for tablets (720p) */
 @media (max-width: 720px) {

@@ -18,8 +18,9 @@
     </div>
     
     <div id="grid"></div>
-    <div id="score">
-        <p>Pares encontrados: <span id="matches">0</span></p>
+
+    <div id="result-container">
+        Pares encontrados: <span id="matches">0</span>
     </div>
 
     <div class="control-panel">
@@ -34,7 +35,7 @@
         let images = [];
 
         // Objeto de audio para el clic
-        const clickSound = new Audio('/assets/sounds/card.mp3');
+        const clickSound = new Audio('assets/sounds/card.mp3');
         const winSound = new Audio('assets/sounds/right.mp3');   // Sonido al encontrar un par
 
         // Función para generar los nombres de las imágenes
@@ -58,42 +59,48 @@
         let revealedCards = [];
         let matchedPairs = 0;
 
-        // Función para crear las tarjetas
         function createCards() {
             grid.innerHTML = ''; // Limpiar el grid antes de crear nuevas cartas
             images.forEach(src => {
                 const card = document.createElement('div');
-                card.classList.add('card');
-
+                card.classList.add('card', 'appear'); // Agregar clase de animación de aparición
+    
                 const back = document.createElement('img');
                 back.src = 'assets/img/default.jpg';
                 back.classList.add('back');
-
+    
                 const front = document.createElement('img');
                 front.src = src;
                 front.classList.add('front');
-
+    
                 card.appendChild(back);
                 card.appendChild(front);
-
+    
                 card.addEventListener('click', () => {
                     if (card.classList.contains('revealed') || card.classList.contains('matched')) {
                         return;
                     }
-
+    
                     // Reproducir sonido al hacer clic
                     clickSound.play();
-
+    
                     card.classList.add('revealed');
                     revealedCards.push(card);
-
+    
                     if (revealedCards.length === 2) {
                         checkMatch();
                     }
                 });
-
+    
                 grid.appendChild(card);
             });
+    
+            // Remover clase de aparición tras la animación
+            setTimeout(() => {
+                document.querySelectorAll('.card').forEach(card => {
+                    card.classList.remove('appear');
+                });
+            }, 500); // Duración de la animación shuffle
         }
 
         // Verificar si hay coincidencia
