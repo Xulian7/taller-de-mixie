@@ -1,0 +1,278 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: black;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+#question {
+    font-size: 28px;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
+    color: #0ff; /* Cian brillante */
+    text-shadow: 0 0 5px #0ff, 0 0 10px #0ff, 0 0 20px #0ff, 0 0 40px rgba(0, 255, 255, 0.7);
+    font-family: 'Orbitron', sans-serif; /* Fuente estilo futurista */
+    letter-spacing: 2px;
+    padding: 10px;
+    border: 2px solid rgba(0, 255, 255, 0.7);
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
+    display: inline-block;
+    animation: glow 1.5s infinite alternate;
+}
+
+/* Animación de brillo pulsante */
+@keyframes glow {
+    0% {
+        text-shadow: 0 0 5px #0ff, 0 0 10px #0ff, 0 0 20px #0ff, 0 0 40px rgba(0, 255, 255, 0.7);
+        border-color: rgba(0, 255, 255, 0.7);
+    }
+    100% {
+        text-shadow: 0 0 10px #0ff, 0 0 20px #0ff, 0 0 30px #0ff, 0 0 50px rgba(0, 255, 255, 1);
+        border-color: rgba(0, 255, 255, 1);
+    }
+}
+
+/* Estilo para extra-panel (cian) */
+#extra-panel p {
+    font-size: 24px;
+    font-weight: bold;
+    color: #00e6e6; /* Cian brillante */
+    text-shadow: 0 0 5px #00e6e6, 0 0 10px #00e6e6, 0 0 20px #00ffff, 0 0 40px #00ffff;
+    font-family: 'Orbitron', sans-serif;
+    letter-spacing: 2px;
+    animation: flicker 1.5s infinite alternate;
+}
+
+/* Estilo para info-panel (púrpura) */
+#info-panel p {
+    font-size: 24px;
+    font-weight: bold;
+    color: #c700ff; /* Púrpura brillante */
+    text-shadow: 0 0 5px #c700ff, 0 0 10px #c700ff, 0 0 20px #ff00ff, 0 0 40px #ff00ff;
+    font-family: 'Orbitron', sans-serif;
+    letter-spacing: 2px;
+    animation: flicker 1.5s infinite alternate;
+}
+
+/* Animación de parpadeo */
+@keyframes flicker {
+    0% { opacity: 1; }
+    50% { opacity: 0.8; }
+    100% { opacity: 1; }
+}
+
+#main-container {
+    display: flex;
+    justify-content: center;  /* Espaciado uniforme entre los elementos */
+    align-items: center;
+    gap: 20px;                /* Espaciado entre los paneles y el juego */
+    width: 80vw;              /* Ocupa el 80% del ancho de la pantalla */
+    max-width: 1200px;        /* No se expande demasiado en pantallas grandes */
+}
+
+/* Contenedor del juego */
+#game-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 80vh; /* Para que coincida con el info-panel */
+}
+
+#game-container {
+    position: relative;
+    width: 60vw;
+    height: 80vh;
+    overflow: hidden;
+    box-shadow: 0 0 15px rgba(0, 0, 255, 0.6);
+    filter: drop-shadow(0 0 10px rgba(0, 0, 255, 0.8));
+    border: 2px dotted blue;
+    background: url('/assets/img/espacio2.jpg') no-repeat center center;
+    background-size: cover;
+}
+
+/* Panel de información a la derecha */
+#info-panel, #extra-panel {
+    flex: 1;
+    height: 80vh; /* Igual que el game-container */
+    text-align: center;
+    padding: 20px;
+    background: url('assets/img/info.jpg') no-repeat center center;
+    background-size: cover;
+    border: 3px solid cyan;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.8);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centra el contenido */
+    align-items: center; /* Asegura que el texto no se desplace */
+    color: white;
+}
+
+
+.falling-answer {
+    position: absolute;
+    top: 0;
+    font-size: 32px;
+    padding: 5px;
+    background: transparent;
+    color: white;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.falling-answer img { 
+    width: 50px;
+    height: 50px;
+    display: block;
+    margin: 0 auto;
+}
+
+#ship {
+    position: absolute;
+    bottom: 10px;
+    width: 70px;
+    height: 70px;
+    background: url('/assets/img/spaceship.png') no-repeat center/cover;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+
+.projectile {
+    position: absolute;
+    width: 30px; /* Aumenta el tamaño */
+    height: 60px;
+    background: url('/assets/img/bullet.png') no-repeat center center;
+    background-size: contain;
+}
+
+#controls {
+    background: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    border-radius: 10px;
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+}
+
+.control-btn {
+    font-size: 28px;
+    padding: 15px;
+    background: #333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.control-btn:active {
+    background: #555;
+}
+
+#score, #timer, #question {
+    font-size: 20px;
+    color: white;
+    margin: 10px;
+}
+
+#speed-selector {
+    background: black;
+    color: cyan;
+    font-size: 18px;
+    padding: 8px;
+    border: 2px solid cyan;
+    border-radius: 5px;
+    text-shadow: 0 0 5px cyan, 0 0 10px cyan;
+    box-shadow: 0 0 5px cyan, 0 0 10px cyan inset;
+    outline: none;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* Efecto al pasar el mouse */
+#speed-selector:hover {
+    box-shadow: 0 0 10px cyan, 0 0 20px cyan inset;
+}
+
+/* Efecto cuando se hace clic */
+#speed-selector:focus {
+    box-shadow: 0 0 15px cyan, 0 0 30px cyan inset;
+}
+
+/* Opciones internas */
+#speed-selector option {
+    background: black;
+    color: cyan;
+}
+
+#speed-selector-label {
+    font-size: 20px;
+    font-weight: bold;
+    color: #00ccff;
+    text-shadow: 0 0 5px #00ccff, 0 0 10px #00ccff, 0 0 20px #00ffff;
+}
+
+.space-button {
+    background: linear-gradient(45deg, #0f0c29, #302b63, #24243e);
+    color: #fff;
+    font-size: 16px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    box-shadow: 0 0 10px #00ffea, 0 0 40px #00ffea, 0 0 80px #00ffea;
+    transition: all 0.3s ease-in-out;
+    position: relative;
+    overflow: hidden;
+}
+
+.space-button:hover {
+    box-shadow: 0 0 20px #00ffea, 0 0 60px #00ffea, 0 0 100px #00ffea;
+    transform: scale(1.1);
+}
+
+.space-button::before {
+    content: "";
+    position: absolute;
+    top: -100%;
+    left: -100%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 10%, rgba(0, 0, 0, 0) 70%);
+    transition: all 0.5s ease;
+}
+
+.space-button:hover::before {
+    top: 0;
+    left: 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/game.css">
+    <title>Juego de Tablas de Multiplicar</title>
+</head>
+<body>
+
+    <div id="main-container">
+        <!-- Nuevo panel vacío para futura información -->
+        <div id="extra-panel">
+            <p id="score">Puntos: 0</p>
+            <button class="space-button" onclick="location.href='index.html'">Planeta Mixie</button>
+        </div>
+        <!-- Contenedor del juego -->
+        <div id="game-section">
+            <p id="question">Nave vulnerable: </p>
+            <div id="game-container">
+                <div id="ship"></div>
+            </div>
+        </div>
+
+        <!-- Panel de información (Score + Timer) -->
+        <div id="info-panel">
+            <p id="timer">Tiempo: 60s</p>
+            <label id="speed-selector-label" for="speed-selector">Velocidad:</label>
+            <select id="speed-selector">
+                <option value="2" selected>Lento</option>
+                <option value="5">Normal</option>
+                <option value="10">Rápido</option>
+            </select>
+
+        </div>
+    </div>
+
+
+    <!-- Controles -->
+    <div id="controls">
+        <button class="control-btn" id="left-btn">⏪</button>
+        <button class="control-btn" id="shoot-btn">🔫</button>
+        <button class="control-btn" id="right-btn">⏩</button>
+    </div>
+
+    <script>
+        let score = 0;
+        let timeLeft = 60;
+        let ship = document.getElementById("ship");
+        let gameContainer = document.getElementById("game-container");
+        let scoreDisplay = document.getElementById("score");
+        let timerDisplay = document.getElementById("timer");
+        let questionDisplay = document.getElementById("question");
+        let shipX = gameContainer.clientWidth / 2 - 25;
+        let correctAnswer = 0;
+        let fallingElements = 0;
+        ship.style.left = `${shipX}px`;
+
+        document.getElementById("left-btn").addEventListener("click", moveLeft);
+        document.getElementById("right-btn").addEventListener("click", moveRight);
+        document.getElementById("shoot-btn").addEventListener("click", shoot);
+
+
+        function moveLeft() {
+            if (shipX > 0) {
+                shipX -= 30;
+                ship.style.left = `${shipX}px`;
+            }
+        }
+
+        function moveRight() {
+            if (shipX < gameContainer.clientWidth - 50) {
+                shipX += 30;
+                ship.style.left = `${shipX}px`;
+            }
+        }
+
+        function shoot() {
+            let projectile = document.createElement("div");
+            projectile.classList.add("projectile");
+            projectile.style.left = `${shipX + 22}px`;
+            projectile.style.bottom = "50px";
+            gameContainer.appendChild(projectile);
+            
+            let interval = setInterval(() => {
+                let bottom = parseInt(projectile.style.bottom) || 50;
+                if (bottom > gameContainer.clientHeight) {
+                    projectile.remove();
+                    clearInterval(interval);
+                } else {
+                    projectile.style.bottom = `${bottom + 20}px`;
+                }
+            }, 30);
+        }
+
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "ArrowLeft" && shipX > 0) {
+                shipX -= 30;
+            } else if (event.key === "ArrowRight" && shipX < gameContainer.clientWidth - 50) {
+                shipX += 30;
+            } else if (event.key === " ") {
+                shoot();
+            }
+            ship.style.left = `${shipX}px`;
+        });
+
+        function generateQuestion() {
+            if (fallingElements > 0) return;
+            
+            let num1 = Math.floor(Math.random() * 10) + 1;
+            let num2 = Math.floor(Math.random() * 10) + 1;
+            correctAnswer = num1 * num2;
+            questionDisplay.innerText = `Nave vulnerable ${num1} x ${num2} = ?`;
+        
+            let answers = new Set();
+            answers.add(correctAnswer);
+        
+            while (answers.size < 4) {
+                let variation = Math.floor(Math.random() * 10) + 1;
+                let wrongAnswer = correctAnswer + (Math.random() < 0.5 ? variation : -variation);
+                if (wrongAnswer > 0) answers.add(wrongAnswer); // Evitar respuestas negativas
+            }
+        
+            answers = [...answers]; // Convertimos el Set en array
+            answers.sort(() => Math.random() - 0.5); // Mezclamos las respuestas
+            fallingElements = answers.length;
+        
+            answers.forEach((answer, index) => {
+                let answerDiv = document.createElement("div");
+                answerDiv.classList.add("falling-answer");
+                answerDiv.dataset.value = answer;
+                answerDiv.style.left = `${(index * 20) + 10}%`; // Distribución más equilibrada
+                answerDiv.innerHTML = `<img src='/assets/img/ovni.png' alt='Ovni'><br>${answer}`;
+                gameContainer.appendChild(answerDiv);
+                fall(answerDiv);
+            });
+        }
+        
+       // Selector de velocidad
+        const speedSelector = document.getElementById("speed-selector");
+
+        function fall(element) {
+            let speed = parseInt(speedSelector.value); // Obtener velocidad seleccionada
+
+            let interval = setInterval(() => {
+                let top = parseInt(getComputedStyle(element).top) || 0;
+                let left = parseInt(getComputedStyle(element).left) || 0;
+
+                if (top >= gameContainer.clientHeight - 80) {
+                    endGame();
+                    clearInterval(interval);
+                } else {
+                    element.style.top = `${top + speed}px`; // Aplicar velocidad seleccionada
+
+                    // Movimiento horizontal aleatorio
+                    let direction = Math.random() > 0.5 ? 1 : -1;
+                    let step = Math.random() * 10 * direction; 
+                    element.style.left = `${left + step}px`;
+                }
+            }, 100);
+        }
+
+        // Actualizar la velocidad al cambiar el selector
+        speedSelector.addEventListener("change", () => {
+            console.log("Velocidad cambiada a:", speedSelector.value);
+        });
+
+        
+
+        function shoot() {
+            let projectile = document.createElement("div");
+            projectile.classList.add("projectile");
+            projectile.style.left = `${shipX + 22}px`;
+            projectile.style.bottom = "50px";
+            gameContainer.appendChild(projectile);
+        
+            // Reproducir sonido del disparo
+            let laserSound = new Audio("assets/sounds/laser.mp3");
+            laserSound.play().catch(error => console.error("Error al reproducir el sonido:", error));
+        
+            let interval = setInterval(() => {
+                let bottom = parseInt(projectile.style.bottom) || 50;
+                if (bottom > gameContainer.clientHeight) {
+                    projectile.remove();
+                    clearInterval(interval);
+                } else {
+                    projectile.style.bottom = `${bottom + 20}px`;
+                    checkHit(projectile, interval);
+                }
+            }, 30);
+        }
+        
+
+        function checkHit(projectile, interval) {
+            document.querySelectorAll(".falling-answer").forEach(answer => {
+                let projRect = projectile.getBoundingClientRect();
+                let answerRect = answer.getBoundingClientRect();
+        
+                if (
+                    projRect.left < answerRect.right &&
+                    projRect.right > answerRect.left &&
+                    projRect.top < answerRect.bottom &&
+                    projRect.bottom > answerRect.top
+                ) {
+                    if (parseInt(answer.dataset.value) === correctAnswer) {
+                        score++;
+                        scoreDisplay.innerText = `Puntos: ${score}`;
+        
+                        // 🔥 Detener animación de la nave antes de cambiar su imagen
+                        answer.style.animation = "none";
+                        
+                        // 🔥 Reemplazar la imagen de la nave con la explosión
+                        answer.innerHTML = `<img src='assets/img/colide.gif?${Date.now()}' alt='Explosión'>`;
+        
+                        setTimeout(() => {
+                            answer.remove();  // Eliminar nave después de la explosión
+                            clearGameObjects();
+                            
+                            // 🔥 Delay antes de generar nuevas naves 🔥
+                            setTimeout(() => generateQuestion(), 500);  // 1 segundo de espera
+                        }, 700); // 700ms para que el GIF de explosión termine
+                    }
+        
+                    projectile.remove();
+                    clearInterval(interval);
+                }
+            });
+        }
+        
+
+        function clearGameObjects() {
+            document.querySelectorAll(".falling-answer, .projectile").forEach(el => el.remove());
+            fallingElements = 0;
+        }
+
+        function startGame() {
+            generateQuestion();
+            let timerInterval = setInterval(() => {
+                timeLeft--;
+                timerDisplay.innerText = `Tiempo: ${timeLeft}s`;
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    alert(`Juego terminado! Puntuación: ${score}`);
+                }
+            }, 1000);
+        }
+
+        function endGame() {
+            gameOver = true;
+            ship.style.backgroundImage = "none";  // Elimina la nave actual
+            setTimeout(() => {
+                ship.style.background = "url('assets/img/explosion.gif?"+Date.now()+"') no-repeat center/cover";
+            }, 50); // Pequeño retraso para asegurar el cambio de imagen
+        
+            setTimeout(() => alert(`Juego terminado! Puntuación: ${score}`), 1000);
+        }
+        
+
+        startGame();
+    </script>
+
+
+</body>
+</html>
+
+
+
