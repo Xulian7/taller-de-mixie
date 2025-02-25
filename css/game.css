@@ -98,7 +98,7 @@ html {
     box-shadow: 0 0 15px rgba(0, 0, 255, 0.6);
     filter: drop-shadow(0 0 10px rgba(0, 0, 255, 0.8));
     border: 2px dotted blue;
-    background: url('/assets/img/espacio2.jpg') no-repeat center center;
+    background: url('assets/img/espacio2.jpg') no-repeat center center;
     background-size: cover;
 }
 
@@ -144,7 +144,7 @@ html {
     bottom: 10px;
     width: 70px;
     height: 70px;
-    background: url('/assets/img/spaceship.png') no-repeat center/cover;
+    background: url('assets/img/spaceship.png') no-repeat center/cover;
     left: 50%;
     transform: translateX(-50%);
 }
@@ -154,7 +154,7 @@ html {
     position: absolute;
     width: 30px; /* Aumenta el tamaño */
     height: 60px;
-    background: url('/assets/img/bullet.png') no-repeat center center;
+    background: url('assets/img/bullet.png') no-repeat center center;
     background-size: contain;
 }
 

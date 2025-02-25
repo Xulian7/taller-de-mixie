@@ -130,7 +130,7 @@
                 answerDiv.classList.add("falling-answer");
                 answerDiv.dataset.value = answer;
                 answerDiv.style.left = `${(index * 20) + 10}%`; // Distribución más equilibrada
-                answerDiv.innerHTML = `<img src='/assets/img/ovni.png' alt='Ovni'><br>${answer}`;
+                answerDiv.innerHTML = `<img src='assets/img/ovni.png' alt='Ovni'><br>${answer}`;
                 gameContainer.appendChild(answerDiv);
                 fall(answerDiv);
             });
@@ -140,25 +140,20 @@
         const speedSelector = document.getElementById("speed-selector");
 
         function fall(element) {
-            let speed = parseInt(speedSelector.value); // Obtener velocidad seleccionada
-
+            let speed = parseInt(speedSelector.value) || 5; // Velocidad con valor por defecto
+        
             let interval = setInterval(() => {
                 let top = parseInt(getComputedStyle(element).top) || 0;
-                let left = parseInt(getComputedStyle(element).left) || 0;
-
-                if (top >= gameContainer.clientHeight - 80) {
+        
+                if (top >= gameContainer.clientHeight - element.clientHeight) {
                     endGame();
                     clearInterval(interval);
                 } else {
-                    element.style.top = `${top + speed}px`; // Aplicar velocidad seleccionada
-
-                    // Movimiento horizontal aleatorio
-                    let direction = Math.random() > 0.5 ? 1 : -1;
-                    let step = Math.random() * 10 * direction; 
-                    element.style.left = `${left + step}px`;
+                    element.style.top = `${top + speed}px`; // Solo cae verticalmente
                 }
             }, 100);
         }
+        
 
         // Actualizar la velocidad al cambiar el selector
         speedSelector.addEventListener("change", () => {
@@ -262,6 +257,3 @@
 
 </body>
 </html>
-
-
-
