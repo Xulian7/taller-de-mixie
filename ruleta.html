@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ruleta Princesa Gamer</title>
+<style>
+    body {
+        background: linear-gradient(135deg, #ffb6f0, #d3a4ff);
+        font-family: 'Comic Sans MS', cursive, sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin: 0;
+        color: #fff;
+        text-align: center;
+    }
+
+    h1 {
+        text-shadow: 2px 2px #a05fd4;
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+    }
+
+    .ruleta-container {
+        position: relative;
+        width: 350px;
+        height: 350px;
+    }
+
+    canvas {
+        border: 6px solid #fff;
+        border-radius: 50%;
+        box-shadow: 0 0 30px rgba(255,255,255,0.8);
+    }
+
+    .puntero {
+        position: absolute;
+        top: -35px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 0;
+        height: 0;
+        border-left: 20px solid transparent;
+        border-right: 20px solid transparent;
+        border-bottom: 35px solid #ff3366;
+        filter: drop-shadow(0 0 5px #fff) drop-shadow(0 0 10px #ff66c4);
+        z-index: 10;
+    }
+
+    button {
+        margin-top: 30px;
+        background: linear-gradient(90deg, #ff66c4, #a05fd4);
+        color: white;
+        border: none;
+        padding: 15px 30px;
+        font-size: 1.2rem;
+        border-radius: 30px;
+        cursor: pointer;
+        box-shadow: 0 0 15px rgba(255,255,255,0.6);
+        transition: transform 0.2s ease;
+    }
+
+    button:hover {
+        transform: scale(1.1);
+    }
+
+    /* Tigger animado */
+    .tigger {
+        position: absolute;
+        bottom: -160px;
+        right: -160px;
+        width: 150px;
+        height: 150px;
+        background-image: url('assets/img/xtiggi.gif');
+        background-size: contain;
+        background-repeat: no-repeat;
+        opacity: 0;
+        transform: scale(0.5);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+        pointer-events: none;
+    }
+
+    .tigger.saltar {
+        opacity: 1;
+        transform: scale(1);
+    }
+</style>
+</head>
+<body>
+
+<h1>🎀 Ruleta Princesa Gamer 🎮</h1>
+<div class="ruleta-container">
+    <div class="puntero"></div>
+    <canvas id="ruleta" width="350" height="350"></canvas>
+    <div id="tigger" class="tigger"></div>
+</div>
+<button onclick="girar()">Jugar</button>
+
+<script>
+    const premios = [
+        "500 Robux",
+        "Tarde Arkadia",
+        "Tarde Dunni",
+        "Labubu Sorpresa",
+        "Vuelve a intentarlo",
+        "Ir a alimentar palomitas",
+        "Invitar a la nona por su cumple",
+        "Tarde de cine"
+    ];
+
+    const colores = ["#ff66c4", "#a05fd4", "#66c4ff", "#ffd966", "#ff8a66", "#84ff66", "#ff66a3", "#66ffd9"];
+    let anguloActual = 0;
+    let girando = false;
+
+    const canvas = document.getElementById("ruleta");
+    const ctx = canvas.getContext("2d");
+    const size = canvas.width;
+    const centro = size / 2;
+    const radSegmento = (2 * Math.PI) / premios.length;
+    const tigger = document.getElementById("tigger");
+
+    function dibujarRuleta() {
+        for (let i = 0; i < premios.length; i++) {
+            ctx.beginPath();
+            ctx.moveTo(centro, centro);
+            ctx.arc(centro, centro, centro, radSegmento * i + anguloActual, radSegmento * (i + 1) + anguloActual);
+            ctx.fillStyle = colores[i % colores.length];
+            ctx.fill();
+            ctx.save();
+            ctx.translate(centro, centro);
+            ctx.rotate(radSegmento * (i + 0.5) + anguloActual);
+            ctx.textAlign = "right";
+            ctx.fillStyle = "#fff";
+            ctx.font = "bold 14px Comic Sans MS";
+            ctx.fillText(premios[i], centro - 10, 5);
+            ctx.restore();
+        }
+    }
+
+    function girar() {
+        if (girando) return;
+        girando = true;
+        tigger.classList.remove("saltar");
+        let giros = Math.floor(Math.random() * 5) + 5;
+        let extra = Math.random() * 360;
+        let destino = (giros * 360) + extra;
+        let inicio = null;
+
+        function animarRuleta(timestamp) {
+            if (!inicio) inicio = timestamp;
+            let progreso = timestamp - inicio;
+            let t = progreso / 4000; 
+            let easing = 1 - Math.pow(1 - t, 3);
+            let angulo = (destino * easing) % 360;
+            anguloActual = (angulo * Math.PI / 180);
+            ctx.clearRect(0, 0, size, size);
+            dibujarRuleta();
+
+            if (t < 1) {
+                requestAnimationFrame(animarRuleta);
+            } else {
+                girando = false;
+                mostrarResultado();
+            }
+        }
+        requestAnimationFrame(animarRuleta);
+    }
+
+    function mostrarResultado() {
+        // Ajuste para puntero fijo arriba
+        let gradosFinal = (anguloActual * 180 / Math.PI + 90) % 360;
+        if (gradosFinal < 0) gradosFinal += 360;
+
+        // Cálculo del índice del premio
+        let indice = Math.floor((premios.length - (gradosFinal / 360) * premios.length) % premios.length);
+
+        alert("✨ Premio: " + premios[indice] + " ✨");
+
+        // Mostrar animación de Tigger
+        tigger.classList.add("saltar");
+        setTimeout(() => tigger.classList.remove("saltar"), 4000);
+    }
+
+    dibujarRuleta();
+</script>
+
+</body>
+</html>
+
+
